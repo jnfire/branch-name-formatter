@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-import AppFooter from '@/components/AppFooter.vue'
-import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
-import AppMainView from '@/components/AppMainView.vue'
-import AppConfigurationView from '@/components/AppConfigurationView.vue'
+import AppMainView from '@/components/AppMainView.vue';
+import AppConfigurationView from '@/components/AppConfigurationView.vue';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -13,18 +13,18 @@ const languages = [
   { code: 'fr', label: 'Français' },
   { code: 'de', label: 'Deutsch' },
   { code: 'it', label: 'Italiano' },
-  { code: 'pt', label: 'Português' }
-]
+  { code: 'pt', label: 'Português' },
+];
 
-const showConfig = ref(false)
+const showConfig = ref(false);
 
 const toggleConfig = () => {
-  showConfig.value = !showConfig.value
-}
+  showConfig.value = !showConfig.value;
+};
 
 const goHome = () => {
-  showConfig.value = false
-}
+  showConfig.value = false;
+};
 </script>
 
 <template>

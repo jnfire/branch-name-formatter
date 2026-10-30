@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SettingsIcon from '@/components/SettingsIcon.vue'
+import SettingsIcon from '@/components/SettingsIcon.vue';
 
 defineProps<{
   showConfig: boolean;
@@ -14,7 +14,12 @@ const emit = defineEmits<{
 <template>
   <header class="navbar">
     <div class="navbar-container">
-      <button type="button" class="navbar-brand" :aria-label="$t('hero.title')" @click="emit('home')">
+      <button
+        type="button"
+        class="navbar-brand"
+        :aria-label="$t('hero.title')"
+        @click="emit('home')"
+      >
         <h1 class="title">{{ $t('hero.title') }}</h1>
       </button>
 

@@ -19,7 +19,7 @@ const triggerRef = ref<HTMLButtonElement | null>(null);
 const optionRefs = ref<HTMLButtonElement[]>([]);
 
 const currentLabel = computed(() => {
-  const found = props.options.find(opt => opt.code === props.modelValue);
+  const found = props.options.find((opt) => opt.code === props.modelValue);
   return found ? found.label : props.modelValue;
 });
 
@@ -30,7 +30,7 @@ const setOptionRef = (el: Element | ComponentPublicInstance | null, index: numbe
 const openDropdown = async () => {
   isOpen.value = true;
   await nextTick();
-  const selectedIndex = props.options.findIndex(opt => opt.code === props.modelValue);
+  const selectedIndex = props.options.findIndex((opt) => opt.code === props.modelValue);
   optionRefs.value[selectedIndex >= 0 ? selectedIndex : 0]?.focus();
 };
 
@@ -128,11 +128,7 @@ onUnmounted(() => {
 
     <transition name="fade-slide">
       <ul v-if="isOpen" class="lang-selector-dropdown" role="listbox">
-        <li
-          v-for="(opt, index) in options"
-          :key="opt.code"
-          role="presentation"
-        >
+        <li v-for="(opt, index) in options" :key="opt.code" role="presentation">
           <button
             :ref="(el) => setOptionRef(el, index)"
             type="button"
@@ -209,7 +205,9 @@ onUnmounted(() => {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 12px -2px rgba(0, 0, 0, 0.08),
+    0 2px 6px -1px rgba(0, 0, 0, 0.04);
   padding: 0.35rem 0;
   list-style: none;
   z-index: 2000;

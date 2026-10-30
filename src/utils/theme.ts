@@ -1,6 +1,6 @@
-export type Theme = 'light' | 'dark' | 'system'
+export type Theme = 'light' | 'dark' | 'system';
 
-const STORAGE_KEY = 'app-theme'
+const STORAGE_KEY = 'app-theme';
 
 export const getTheme = (): Theme => {
   try {

@@ -22,7 +22,7 @@ describe('Theme Utility Module', () => {
         mockStorage = {};
       },
       key: () => null,
-      length: 0
+      length: 0,
     };
 
     (globalThis as unknown as { document: unknown }).document = {
@@ -34,8 +34,8 @@ describe('Theme Utility Module', () => {
         removeAttribute: (name: string) => {
           delete mockAttributes[name];
         },
-        hasAttribute: (name: string) => name in mockAttributes
-      }
+        hasAttribute: (name: string) => name in mockAttributes,
+      },
     };
 
     vi.restoreAllMocks();

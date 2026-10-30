@@ -1,110 +1,110 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { FormatManager } from '@/core/FormatManager'
-import type { BranchFormatTemplate } from '@/core/FormatTypes'
-import FormatPreview from '@/components/FormatPreview.vue'
-import FormatEditor from '@/components/FormatEditor.vue'
-import CustomModal from '@/components/CustomModal.vue'
-import PersonalizationCard from '@/components/PersonalizationCard.vue'
+import { ref, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { FormatManager } from '@/core/FormatManager';
+import type { BranchFormatTemplate } from '@/core/FormatTypes';
+import FormatPreview from '@/components/FormatPreview.vue';
+import FormatEditor from '@/components/FormatEditor.vue';
+import CustomModal from '@/components/CustomModal.vue';
+import PersonalizationCard from '@/components/PersonalizationCard.vue';
 
 defineProps<{
   languages: { code: string; label: string }[];
-}>()
+}>();
 
-defineEmits(['close'])
+defineEmits(['close']);
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n();
 
-const formats = ref<BranchFormatTemplate[]>([])
-const editingFormat = ref<BranchFormatTemplate | null>(null)
-const previewFormat = ref<BranchFormatTemplate | null>(null)
-const defaultFormatId = ref<string | null>(null)
+const formats = ref<BranchFormatTemplate[]>([]);
+const editingFormat = ref<BranchFormatTemplate | null>(null);
+const previewFormat = ref<BranchFormatTemplate | null>(null);
+const defaultFormatId = ref<string | null>(null);
 
-const showDeleteModal = ref(false)
-const formatToDelete = ref<string | null>(null)
+const showDeleteModal = ref(false);
+const formatToDelete = ref<string | null>(null);
 
 const loadFormats = () => {
-  formats.value = FormatManager.getFormats()
-}
+  formats.value = FormatManager.getFormats();
+};
 
 onMounted(() => {
-  loadFormats()
+  loadFormats();
   if (formats.value.length > 0) {
-    const storedDefaultId = FormatManager.getDefaultFormatId()
-    const storedDefault = formats.value.find(f => f.id === storedDefaultId)
-    previewFormat.value = storedDefault || formats.value[0]
-    defaultFormatId.value = previewFormat.value.id
+    const storedDefaultId = FormatManager.getDefaultFormatId();
+    const storedDefault = formats.value.find((f) => f.id === storedDefaultId);
+    previewFormat.value = storedDefault || formats.value[0];
+    defaultFormatId.value = previewFormat.value.id;
   }
-})
+});
 
 // Devuelve el formato que debe verse en la previsualización cuando no hay uno
 // explícito que mostrar (tras cerrar el editor, borrar, etc.): el predeterminado
 // actual si sigue existiendo, o si no el primero de la lista.
 const getPreviewFallback = (): BranchFormatTemplate | null => {
-  return formats.value.find(f => f.id === defaultFormatId.value) || formats.value[0] || null
-}
+  return formats.value.find((f) => f.id === defaultFormatId.value) || formats.value[0] || null;
+};
 
 // Al hacer clic en una tarjeta se previsualiza y, a la vez, se marca como
 // el formato predeterminado de la app.
 const selectFormat = (format: BranchFormatTemplate) => {
-  previewFormat.value = format
-  defaultFormatId.value = format.id
-  FormatManager.setDefaultFormatId(format.id)
-}
+  previewFormat.value = format;
+  defaultFormatId.value = format.id;
+  FormatManager.setDefaultFormatId(format.id);
+};
 
 const handleEdit = (format: BranchFormatTemplate) => {
-  editingFormat.value = format
-  previewFormat.value = format
-}
+  editingFormat.value = format;
+  previewFormat.value = format;
+};
 
 const handleClone = (formatId: string) => {
-  const resolveLabel = (value: string) => value.includes('.') ? t(value) : value
-  const cloned = FormatManager.cloneFormat(formatId, resolveLabel, t('configurator.cloneSuffix'))
+  const resolveLabel = (value: string) => (value.includes('.') ? t(value) : value);
+  const cloned = FormatManager.cloneFormat(formatId, resolveLabel, t('configurator.cloneSuffix'));
   if (cloned) {
-    loadFormats()
-    handleEdit(cloned)
+    loadFormats();
+    handleEdit(cloned);
   }
-}
+};
 
 // Recarga la lista y refresca el formato que se está editando/previsualizando
 // tras un cambio persistido fuera del flujo normal de Guardar (toggles instantáneos).
 const refreshEditingFormat = (id: string) => {
-  loadFormats()
-  const refreshed = formats.value.find(f => f.id === id) || null
-  editingFormat.value = refreshed
-  previewFormat.value = refreshed
-}
+  loadFormats();
+  const refreshed = formats.value.find((f) => f.id === id) || null;
+  editingFormat.value = refreshed;
+  previewFormat.value = refreshed;
+};
 
 const handleUpdateLanguageInEditor = (language: BranchFormatTemplate['language']) => {
-  if (!editingFormat.value) return
-  FormatManager.setLanguage(editingFormat.value.id, language)
-  refreshEditingFormat(editingFormat.value.id)
-}
+  if (!editingFormat.value) return;
+  FormatManager.setLanguage(editingFormat.value.id, language);
+  refreshEditingFormat(editingFormat.value.id);
+};
 
 const promptDelete = (formatId: string) => {
-  formatToDelete.value = formatId
-  showDeleteModal.value = true
-}
+  formatToDelete.value = formatId;
+  showDeleteModal.value = true;
+};
 
 const confirmDelete = () => {
   if (formatToDelete.value) {
-    FormatManager.deleteFormat(formatToDelete.value)
-    loadFormats()
+    FormatManager.deleteFormat(formatToDelete.value);
+    loadFormats();
     if (defaultFormatId.value === formatToDelete.value) {
-      defaultFormatId.value = formats.value[0]?.id ?? null
-      FormatManager.setDefaultFormatId(defaultFormatId.value ?? '')
+      defaultFormatId.value = formats.value[0]?.id ?? null;
+      FormatManager.setDefaultFormatId(defaultFormatId.value ?? '');
     }
     if (previewFormat.value?.id === formatToDelete.value) {
-      previewFormat.value = getPreviewFallback()
+      previewFormat.value = getPreviewFallback();
     }
   }
-  formatToDelete.value = null
-}
+  formatToDelete.value = null;
+};
 
 const cancelDelete = () => {
-  formatToDelete.value = null
-}
+  formatToDelete.value = null;
+};
 
 const startNewFormat = () => {
   const newFormat: BranchFormatTemplate = {
@@ -114,65 +114,75 @@ const startNewFormat = () => {
     isReadonly: false,
     language: locale.value as BranchFormatTemplate['language'],
     fields: [
-      { id: 'campo1', label: `${t('configurator.newFieldLabel')} 1`, type: 'text', capitalization: 'LOWERCASE' },
-      { id: 'campo2', label: `${t('configurator.newFieldLabel')} 2`, type: 'text', capitalization: 'LOWERCASE' }
-    ]
-  }
-  editingFormat.value = newFormat
-  previewFormat.value = newFormat
-}
+      {
+        id: 'campo1',
+        label: `${t('configurator.newFieldLabel')} 1`,
+        type: 'text',
+        capitalization: 'LOWERCASE',
+      },
+      {
+        id: 'campo2',
+        label: `${t('configurator.newFieldLabel')} 2`,
+        type: 'text',
+        capitalization: 'LOWERCASE',
+      },
+    ],
+  };
+  editingFormat.value = newFormat;
+  previewFormat.value = newFormat;
+};
 
 const handleSave = (savedFormat: BranchFormatTemplate) => {
-  const exists = formats.value.some(f => f.id === savedFormat.id)
+  const exists = formats.value.some((f) => f.id === savedFormat.id);
   if (exists) {
-    FormatManager.updateFormat(savedFormat)
+    FormatManager.updateFormat(savedFormat);
   } else {
-    FormatManager.addFormat(savedFormat)
+    FormatManager.addFormat(savedFormat);
   }
-  editingFormat.value = null
-  loadFormats()
-  previewFormat.value = savedFormat
-}
+  editingFormat.value = null;
+  loadFormats();
+  previewFormat.value = savedFormat;
+};
 
 const handleCancel = () => {
-  editingFormat.value = null
-  previewFormat.value = getPreviewFallback()
-}
+  editingFormat.value = null;
+  previewFormat.value = getPreviewFallback();
+};
 
 const updatePreview = (format: BranchFormatTemplate) => {
-  previewFormat.value = format
-}
+  previewFormat.value = format;
+};
 
 // Import/Export
 const handleExport = () => {
-  const dataStr = FormatManager.exportConfiguration()
-  const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr)
-  const exportFileDefaultName = 'branch-formats.json'
-  const linkElement = document.createElement('a')
-  linkElement.setAttribute('href', dataUri)
-  linkElement.setAttribute('download', exportFileDefaultName)
-  linkElement.click()
-}
+  const dataStr = FormatManager.exportConfiguration();
+  const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+  const exportFileDefaultName = 'branch-formats.json';
+  const linkElement = document.createElement('a');
+  linkElement.setAttribute('href', dataUri);
+  linkElement.setAttribute('download', exportFileDefaultName);
+  linkElement.click();
+};
 
 const handleImport = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  const file = target.files?.[0]
-  if (!file) return
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (!file) return;
 
-  const reader = new FileReader()
+  const reader = new FileReader();
   reader.onload = (e) => {
     try {
-      const jsonStr = e.target?.result as string
-      FormatManager.importCustomFormats(jsonStr)
-      loadFormats()
-      alert(t('configurator.importSuccess'))
+      const jsonStr = e.target?.result as string;
+      FormatManager.importCustomFormats(jsonStr);
+      loadFormats();
+      alert(t('configurator.importSuccess'));
     } catch {
-      alert(t('configurator.importError'))
+      alert(t('configurator.importError'));
     }
-  }
-  reader.readAsText(file)
-  target.value = '' // reset input
-}
+  };
+  reader.readAsText(file);
+  target.value = ''; // reset input
+};
 
 const fileInputRef = ref<HTMLInputElement | null>(null);
 
@@ -201,10 +211,16 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
       <div v-else class="formats-list-section">
         <div class="list-header">
           <h3 class="section-title">{{ $t('configurator.availableFormats') }}</h3>
-          <button type="button" class="btn-primary" @click="startNewFormat">{{ $t('configurator.createFormat') }}</button>
+          <button type="button" class="btn-primary" @click="startNewFormat">
+            {{ $t('configurator.createFormat') }}
+          </button>
         </div>
 
-        <div class="format-items" role="radiogroup" :aria-label="$t('configurator.availableFormats')">
+        <div
+          class="format-items"
+          role="radiogroup"
+          :aria-label="$t('configurator.availableFormats')"
+        >
           <div
             v-for="format in formats"
             :key="format.id"
@@ -214,7 +230,7 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
             tabindex="0"
             class="format-card"
             :class="{
-              'format-card--selected': format.id === defaultFormatId
+              'format-card--selected': format.id === defaultFormatId,
             }"
             @click="selectFormat(format)"
             @keydown.enter="selectFormat(format)"
@@ -223,33 +239,37 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
             <div class="format-info">
               <span class="format-name">
                 {{ format.name.includes('.') ? $t(format.name) : format.name }}
-                <span v-if="format.isReadonly" class="badge">{{ $t('configurator.badgeBuiltin') }}</span>
-                <span v-if="format.id === defaultFormatId" class="badge badge--selected">{{ $t('configurator.badgeSelected') }}</span>
+                <span v-if="format.isReadonly" class="badge">{{
+                  $t('configurator.badgeBuiltin')
+                }}</span>
+                <span v-if="format.id === defaultFormatId" class="badge badge--selected">{{
+                  $t('configurator.badgeSelected')
+                }}</span>
               </span>
               <code class="format-template">{{ format.templateString }}</code>
             </div>
             <div class="format-actions" @click.stop>
-              <button 
-                type="button" 
-                class="btn-secondary small-btn" 
+              <button
+                type="button"
+                class="btn-secondary small-btn"
                 :aria-label="`${$t('configurator.edit')}: ${format.name.includes('.') ? $t(format.name) : format.name}`"
                 @click="handleEdit(format)"
               >
                 {{ $t('configurator.edit') }}
               </button>
-              <button 
-                v-if="format.isReadonly" 
-                type="button" 
-                class="btn-secondary small-btn" 
+              <button
+                v-if="format.isReadonly"
+                type="button"
+                class="btn-secondary small-btn"
                 :aria-label="`${$t('configurator.clone')}: ${format.name.includes('.') ? $t(format.name) : format.name}`"
                 @click="handleClone(format.id)"
               >
                 {{ $t('configurator.clone') }}
               </button>
-              <button 
-                v-else 
-                type="button" 
-                class="btn-secondary small-btn delete-btn" 
+              <button
+                v-else
+                type="button"
+                class="btn-secondary small-btn delete-btn"
                 :aria-label="`${$t('configurator.delete')}: ${format.name.includes('.') ? $t(format.name) : format.name}`"
                 @click="promptDelete(format.id)"
               >
@@ -260,7 +280,9 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
         </div>
 
         <div class="import-export-section">
-          <button type="button" class="btn-secondary import-export-btn" @click="handleExport">{{ $t('configurator.exportCustom') }}</button>
+          <button type="button" class="btn-secondary import-export-btn" @click="handleExport">
+            {{ $t('configurator.exportCustom') }}
+          </button>
           <label
             class="btn-secondary file-upload-btn import-export-btn"
             tabindex="0"
@@ -269,7 +291,13 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
             @keydown.space.prevent="triggerFileInput"
           >
             {{ $t('configurator.importJson') }}
-            <input ref="fileInputRef" type="file" accept=".json" class="sr-only" @change="handleImport" />
+            <input
+              ref="fileInputRef"
+              type="file"
+              accept=".json"
+              class="sr-only"
+              @change="handleImport"
+            />
           </label>
         </div>
       </div>
@@ -317,8 +345,6 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
   font-size: 1.15rem;
   font-weight: 600;
 }
-
-
 
 .list-header {
   display: flex;
