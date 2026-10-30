@@ -467,6 +467,9 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
 .import-export-btn {
   flex: 1;
   max-width: 200px;
+  /* The export <button> and the import <label> must render the same text size. */
+  font-family: inherit;
+  font-size: 0.875rem;
   text-align: center;
   justify-content: center;
   display: inline-flex;
