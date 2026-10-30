@@ -9,14 +9,6 @@
     }
   },
   "header": {
-    "settings": {
-      "general": "General Settings",
-      "language": "Language",
-      "theme": "Theme",
-      "themeLight": "Light",
-      "themeDark": "Dark",
-      "themeSystem": "System"
-    },
     "config": "Definições"
   },
   "form": {
