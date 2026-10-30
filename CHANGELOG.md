@@ -7,6 +7,29 @@ and this project uses [Semantic Versioning](https://semver.org/). The version
 number lives in a single place, `package.json`, and is shown live in the app
 footer.
 
+## [Unreleased]
+
+### Changed
+- License changed from proprietary to the GNU Affero General Public
+  License v3.0 (`AGPL-3.0-only`).
+- Toolchain aligned with the other portfolio tools: vue-i18n 11, Vite 7,
+  Vitest 4, TypeScript 5.9, ESLint 9 (flat config) and Prettier.
+- CI now runs lint, format check, tests, type-check and build, and the
+  GitHub Pages deploy only runs when all of them pass.
+- `Footer.vue` renamed to `AppFooter.vue`; footer links point at the
+  current repository name.
+
+### Removed
+- Google Analytics and the cookie-consent banner. The app uses no
+  cookies, analytics or tracking.
+- Unused `ArrowLeftIcon` component, orphaned `header.settings` strings in
+  four locales, and the committed dev server log.
+
+### Fixed
+- `<html lang>` now follows the interface language.
+- Export and Import buttons render at the same text size.
+- vue-i18n security advisory (high) in `@intlify/core-base`.
+
 ## [1.0.0] - 2026-08-12
 
 First stable release. This version is a full redesign of the app's visual
