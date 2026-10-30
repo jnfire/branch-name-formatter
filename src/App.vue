@@ -2,9 +2,7 @@
 import { ref } from 'vue'
 
 import Footer from '@/components/Footer.vue'
-import CookieBanner from '@/components/CookieBanner.vue'
 import AppHeader from '@/components/AppHeader.vue'
-import { initAnalytics } from '@/utils/analytics'
 
 import AppMainView from '@/components/AppMainView.vue'
 import AppConfigurationView from '@/components/AppConfigurationView.vue'
@@ -17,11 +15,6 @@ const languages = [
   { code: 'it', label: 'Italiano' },
   { code: 'pt', label: 'Português' }
 ]
-
-const handleCookieAccept = () => {
-  const gaId = (import.meta.env.VITE_GA_ID as string) || 'G-XXXXXXXXXX'
-  initAnalytics(gaId)
-}
 
 const showConfig = ref(false)
 
@@ -52,7 +45,6 @@ const goHome = () => {
     <AppMainView v-else />
 
     <Footer />
-    <CookieBanner @accept="handleCookieAccept" />
   </div>
 </template>
 

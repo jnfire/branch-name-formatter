@@ -28,4 +28,4 @@ El **Branch Name Formatter** está construido con un enfoque en la simplicidad, 
 - La mayoría de textos de la interfaz se resuelven con `$t('namespace.clave')`. Los nombres y etiquetas de campo de los formatos predefinidos se guardan como claves i18n (p. ej. `formats.gitflow.name`) dentro de los datos de `FormatManager`, en vez de texto literal, para que sigan el idioma de interfaz seleccionado; los formatos personalizados guardan texto literal en su lugar. Los componentes que muestran el `name`/`label` de un formato comprueban si contiene un punto para decidir si traducirlo o mostrarlo tal cual (ver `BranchForm.vue`, `AppConfigurationView.vue`).
 
 ## Privacidad y Datos
-Ningún dato sale del navegador del usuario. No utilizamos APIs externas ni servicios de rastreo, salvo un script de analítica opt-in sujeto al consentimiento de cookies (ver `CookieBanner.vue` / `utils/analytics.ts`). Todo lo demás se almacena en el `localStorage` del navegador.
+Ningún dato sale del navegador del usuario. La app no usa APIs externas, cookies, analítica ni servicios de rastreo. Todo se almacena en el `localStorage` del navegador.

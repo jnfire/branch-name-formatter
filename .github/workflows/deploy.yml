@@ -37,8 +37,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
 
       - name: Create CNAME
         run: echo 'branches.jnfire.dev' > dist/CNAME

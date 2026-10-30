@@ -36,11 +36,6 @@
     "copy": "Copiar",
     "delete": "Eliminar"
   },
-  "cookies": {
-    "text": "Ajuda-nos a melhorar? Usamos cookies de análise anónimos para compreender o uso e otimizar a web.",
-    "accept": "Aceitar",
-    "decline": "Recusar"
-  },
   "footer": {
     "privacy": "Desenvolvimento local-first. Seus dados, seu controlo.",
     "sourceCode": "Ver Código Fonte",

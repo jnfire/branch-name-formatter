@@ -28,4 +28,4 @@ The **Branch Name Formatter** is built with a focus on simplicity, maintainabili
 - Most UI strings are looked up with `$t('namespace.key')`. Built-in format names and field labels are stored as i18n keys (e.g. `formats.gitflow.name`) inside `FormatManager`'s data rather than literal text, so they follow the selected UI language; custom formats store literal text instead. Components that display a format's `name`/field `label` check for a `.` to decide whether to translate it or show it as-is (see `BranchForm.vue`, `AppConfigurationView.vue`).
 
 ## Privacy & Data
-No data ever leaves the user's browser. We do not use any external APIs or tracking services beyond an opt-in, cookie-consent-gated analytics script (see `CookieBanner.vue` / `utils/analytics.ts`). Everything else is stored in the browser's `localStorage`.
+No data ever leaves the user's browser. The app uses no external APIs, cookies, analytics or tracking services. Everything is stored in the browser's `localStorage`.
