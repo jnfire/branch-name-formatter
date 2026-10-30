@@ -45,11 +45,21 @@ const i18n = createI18n<[MessageSchema], SupportedLocale, false>({
   },
 });
 
+// Keep <html lang> in sync so screen readers pronounce the UI correctly.
+const syncDocumentLanguage = (locale: SupportedLocale): void => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = locale;
+  }
+};
+
+syncDocumentLanguage(initialLocale);
+
 export const getUiLanguage = (): SupportedLocale => i18n.global.locale.value || initialLocale;
 
 export const setUiLanguage = (locale: SupportedLocale): void => {
   if (supportedLocales.includes(locale)) {
     i18n.global.locale.value = locale;
+    syncDocumentLanguage(locale);
     try {
       localStorage.setItem(STORAGE_KEY_UI_LANG, locale);
     } catch {
