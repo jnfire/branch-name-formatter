@@ -103,9 +103,9 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
         id="format-name-input"
         type="text"
         :value="displayName"
-        @input="localFormat.name = ($event.target as HTMLInputElement).value"
         class="input-element"
         :disabled="format.isReadonly"
+        @input="localFormat.name = ($event.target as HTMLInputElement).value"
       />
     </div>
 
@@ -113,8 +113,8 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
       <label for="format-template-input" class="form-label">{{ $t('configurator.editor.template') }}</label>
       <input 
         id="format-template-input" 
-        type="text" 
         v-model="localFormat.templateString" 
+        type="text" 
         class="input-element" 
         :disabled="format.isReadonly" 
       />
@@ -132,12 +132,12 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
         <div class="field-editor-head">
           <span class="field-index">{{ $t('configurator.editor.field', { n: index + 1 }) }}</span>
           <button 
-            type="button"
-            v-if="!format.isReadonly" 
-            @click="removeField(index)" 
+            v-if="!format.isReadonly"
+            type="button" 
             class="icon-btn delete-btn" 
-            :aria-label="`${$t('configurator.editor.deleteField')} ${index + 1}`"
+            :aria-label="`${$t('configurator.editor.deleteField')} ${index + 1}`" 
             :title="$t('configurator.editor.deleteField')"
+            @click="removeField(index)"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
           </button>
@@ -148,8 +148,8 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
             <label :for="`field-id-${index}`" class="field-label-small">{{ $t('configurator.editor.fieldId') }}</label>
             <input 
               :id="`field-id-${index}`"
-              type="text" 
               v-model="field.id" 
+              type="text" 
               :placeholder="$t('configurator.editor.fieldIdPlaceholder')" 
               class="input-element small" 
               :disabled="format.isReadonly" 
@@ -162,10 +162,10 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
               :id="`field-label-${index}`"
               type="text"
               :value="resolveLabel(field.label)"
-              @input="field.label = ($event.target as HTMLInputElement).value"
               :placeholder="$t('configurator.editor.fieldLabelPlaceholder')"
               class="input-element small"
               :disabled="format.isReadonly"
+              @input="field.label = ($event.target as HTMLInputElement).value"
             />
           </div>
 
@@ -173,10 +173,10 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
             <label class="field-label-small">{{ $t('configurator.editor.type') }}</label>
             <CustomSelect
               :model-value="field.type || 'text'"
-              @update:model-value="field.type = $event as 'text' | 'select'"
               size="sm"
               :disabled="format.isReadonly"
               :options="typeOptions"
+              @update:model-value="field.type = $event as 'text' | 'select'"
             />
           </div>
 
@@ -197,21 +197,21 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
             :id="`field-options-${index}`"
             type="text"
             :value="getOptionsText(field)"
-            @input="updateOptions(field, $event)"
             :placeholder="$t('configurator.editor.optionsPlaceholder')"
             class="input-element small"
             :disabled="format.isReadonly"
+            @input="updateOptions(field, $event)"
           />
         </div>
       </div>
-      <button type="button" v-if="!format.isReadonly" @click="addField" class="btn-secondary">{{ $t('configurator.editor.addField') }}</button>
+      <button v-if="!format.isReadonly" type="button" class="btn-secondary" @click="addField">{{ $t('configurator.editor.addField') }}</button>
     </div>
 
     <div class="actions">
-      <button type="button" v-if="format.isReadonly" @click="emit('cancel')" class="btn-secondary">{{ $t('configurator.editor.close') }}</button>
+      <button v-if="format.isReadonly" type="button" class="btn-secondary" @click="emit('cancel')">{{ $t('configurator.editor.close') }}</button>
       <template v-else>
-        <button type="button" @click="emit('cancel')" class="btn-secondary">{{ $t('configurator.editor.cancel') }}</button>
-        <button type="button" @click="handleSave" class="btn-primary">{{ $t('configurator.editor.save') }}</button>
+        <button type="button" class="btn-secondary" @click="emit('cancel')">{{ $t('configurator.editor.cancel') }}</button>
+        <button type="button" class="btn-primary" @click="handleSave">{{ $t('configurator.editor.save') }}</button>
       </template>
     </div>
   </div>

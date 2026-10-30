@@ -2,6 +2,14 @@ import { Branch } from '@/core/Branch'
 import type { BranchType } from '@/core/BranchTypes'
 import { LocalStorageManager } from '@/utils/LocalStorageManager'
 
+// Shape of a branch as stored in localStorage. Entries saved by older
+// versions have projectId/ticketId/featureName instead of branchName.
+type StoredBranch = Partial<BranchType> & {
+  projectId?: string
+  ticketId?: string
+  featureName?: string
+}
+
 export class BranchManager {
   private static instance: BranchManager
   private branches: Branch[] = []
@@ -37,7 +45,7 @@ export class BranchManager {
     const localStorage = LocalStorageManager.getInstance()
     const branches = localStorage.get('branches')
     if (branches) {
-      this.branches = JSON.parse(branches).map((branch: any) => this.loadBranch(branch))
+      this.branches = (JSON.parse(branches) as StoredBranch[]).map((branch) => this.loadBranch(branch))
       if (this.branches.length > 10) {
         this.branches = this.branches.slice(-10)
       }
@@ -45,7 +53,7 @@ export class BranchManager {
     this.setLastId()
   }
 
-  private loadBranch(data: any): Branch {
+  private loadBranch(data: StoredBranch): Branch {
     let branchName = data.branchName || ''
     
     // Retrocompatibilidad con datos antiguos guardados en localStorage

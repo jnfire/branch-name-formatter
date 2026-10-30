@@ -1,6 +1,7 @@
 <!-- src/components/LangSelector.vue -->
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
+import type { ComponentPublicInstance } from 'vue';
 import FlagIcon from './FlagIcon.vue';
 
 const props = defineProps<{
@@ -22,8 +23,8 @@ const currentLabel = computed(() => {
   return found ? found.label : props.modelValue;
 });
 
-const setOptionRef = (el: any, index: number) => {
-  if (el) optionRefs.value[index] = el as HTMLButtonElement;
+const setOptionRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+  if (el instanceof HTMLButtonElement) optionRefs.value[index] = el;
 };
 
 const openDropdown = async () => {
@@ -110,15 +111,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="lang-selector-container" ref="containerRef">
+  <div ref="containerRef" class="lang-selector-container">
     <button
       ref="triggerRef"
       type="button"
       class="lang-selector-trigger"
-      @click="toggleDropdown"
-      @keydown="handleTriggerKeydown"
       aria-haspopup="listbox"
       :aria-expanded="isOpen"
+      @click="toggleDropdown"
+      @keydown="handleTriggerKeydown"
     >
       <FlagIcon :code="modelValue" />
       <span class="lang-label">{{ currentLabel }}</span>
@@ -133,8 +134,8 @@ onUnmounted(() => {
           role="presentation"
         >
           <button
-            type="button"
             :ref="(el) => setOptionRef(el, index)"
+            type="button"
             class="lang-option"
             :class="{ 'option-selected': opt.code === modelValue }"
             role="option"

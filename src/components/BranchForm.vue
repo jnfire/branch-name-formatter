@@ -83,10 +83,10 @@ function cleanInput() {
 </script>
 
 <template>
-  <form class="form" :aria-label="$t('form.generate')" @submit="handleSubmit" autocomplete="off" novalidate>
+  <form class="form" :aria-label="$t('form.generate')" autocomplete="off" novalidate @submit="handleSubmit">
 
     <template v-if="selectedFormat">
-      <div class="form-group" v-for="field in selectedFormat.fields" :key="field.id">
+      <div v-for="field in selectedFormat.fields" :key="field.id" class="form-group">
         <label :for="field.id" class="form-label">
            {{ field.label.includes('.') ? $t(field.label) : field.label }}
         </label>
@@ -102,10 +102,10 @@ function cleanInput() {
         <input
           v-else
           :id="field.id"
+          v-model="formData[field.id]"
           class="input-element"
           type="text"
           :name="field.id"
-          v-model="formData[field.id]"
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"

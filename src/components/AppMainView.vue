@@ -6,7 +6,6 @@ import { BranchManager } from '@/core/BranchManager'
 import type { BranchFormType } from '@/core/BranchTypes'
 import type { Branch } from '@/core/Branch'
 import type { BranchFormatTemplate } from '@/core/FormatTypes'
-import { FormatManager } from '@/core/FormatManager'
 
 const branchManager = BranchManager.getInstance()
 
@@ -67,7 +66,7 @@ const handleDeleteBranch = (branchId: number) => {
         >
           {{ copied ? $t('result.copied') : $t('result.copy') }}
         </button>
-        <div class="sr-only" role="status" aria-live="polite" v-if="copied">
+        <div v-if="copied" class="sr-only" role="status" aria-live="polite">
           {{ $t('result.copied') }}
         </div>
       </div>

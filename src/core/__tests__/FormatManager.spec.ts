@@ -91,7 +91,7 @@ describe('FormatManager', () => {
     expect(exportedObj.uiLanguage).toBeDefined()
     expect(exportedObj.formats).toBeDefined()
     expect(Array.isArray(exportedObj.formats)).toBe(true)
-    const gitflow = exportedObj.formats.find((f: any) => f.id === 'gitflow')
+    const gitflow = exportedObj.formats.find((format: { id: string }) => format.id === 'gitflow')
     expect(gitflow.language).toBe('en')
   })
 

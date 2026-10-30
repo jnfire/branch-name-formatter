@@ -28,7 +28,7 @@ const getStoredLocale = (): SupportedLocale | null => {
 const browserLocale = (typeof navigator !== 'undefined' ? navigator.language.split('-')[0] : 'en') as SupportedLocale
 const initialLocale = getStoredLocale() || (supportedLocales.includes(browserLocale) ? browserLocale : 'en')
 
-const i18n = createI18n<[MessageSchema], SupportedLocale>({
+const i18n = createI18n<[MessageSchema], SupportedLocale, false>({
   legacy: false,
   locale: initialLocale,
   fallbackLocale: 'en',
@@ -42,20 +42,11 @@ const i18n = createI18n<[MessageSchema], SupportedLocale>({
   }
 })
 
-export const getUiLanguage = (): SupportedLocale => {
-  const globalI18n = i18n.global as any
-  const loc = globalI18n.locale.value ?? globalI18n.locale
-  return (loc as SupportedLocale) || initialLocale
-}
+export const getUiLanguage = (): SupportedLocale => i18n.global.locale.value || initialLocale
 
 export const setUiLanguage = (locale: SupportedLocale): void => {
   if (supportedLocales.includes(locale)) {
-    const globalI18n = i18n.global as any
-    if (typeof globalI18n.locale.value !== 'undefined') {
-      globalI18n.locale.value = locale
-    } else {
-      globalI18n.locale = locale
-    }
+    i18n.global.locale.value = locale
     try {
       localStorage.setItem(STORAGE_KEY_UI_LANG, locale)
     } catch {

@@ -6,14 +6,13 @@ import type { BranchFormatTemplate } from '@/core/FormatTypes'
 import FormatPreview from '@/components/FormatPreview.vue'
 import FormatEditor from '@/components/FormatEditor.vue'
 import CustomModal from '@/components/CustomModal.vue'
-import ArrowLeftIcon from '@/components/ArrowLeftIcon.vue'
 import PersonalizationCard from '@/components/PersonalizationCard.vue'
 
-const props = defineProps<{
+defineProps<{
   languages: { code: string; label: string }[];
 }>()
 
-const emit = defineEmits(['close'])
+defineEmits(['close'])
 
 const { t, locale } = useI18n()
 
@@ -167,7 +166,7 @@ const handleImport = (event: Event) => {
       FormatManager.importCustomFormats(jsonStr)
       loadFormats()
       alert(t('configurator.importSuccess'))
-    } catch (importError) {
+    } catch {
       alert(t('configurator.importError'))
     }
   }
@@ -239,8 +238,8 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
                 {{ $t('configurator.edit') }}
               </button>
               <button 
-                type="button" 
                 v-if="format.isReadonly" 
+                type="button" 
                 class="btn-secondary small-btn" 
                 :aria-label="`${$t('configurator.clone')}: ${format.name.includes('.') ? $t(format.name) : format.name}`"
                 @click="handleClone(format.id)"
@@ -248,8 +247,8 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
                 {{ $t('configurator.clone') }}
               </button>
               <button 
-                type="button" 
                 v-else 
+                type="button" 
                 class="btn-secondary small-btn delete-btn" 
                 :aria-label="`${$t('configurator.delete')}: ${format.name.includes('.') ? $t(format.name) : format.name}`"
                 @click="promptDelete(format.id)"
@@ -270,7 +269,7 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
             @keydown.space.prevent="triggerFileInput"
           >
             {{ $t('configurator.importJson') }}
-            <input ref="fileInputRef" type="file" accept=".json" @change="handleImport" class="sr-only" />
+            <input ref="fileInputRef" type="file" accept=".json" class="sr-only" @change="handleImport" />
           </label>
         </div>
       </div>

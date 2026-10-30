@@ -75,8 +75,9 @@ describe('BranchManager', () => {
     }]))
 
     // need to recreate manager to force load
-    const tempManager = (BranchManager as any).instance
-    ;(BranchManager as any).instance = undefined
+    const managerSingleton = BranchManager as unknown as { instance: BranchManager | undefined }
+    const tempManager = managerSingleton.instance
+    managerSingleton.instance = undefined
     const newManager = BranchManager.getInstance()
 
     const branches = newManager.getBranches()
@@ -84,6 +85,6 @@ describe('BranchManager', () => {
     expect(branches[0].branchName).toBe('OLD-123--feature')
     
     // restore instance
-    ;(BranchManager as any).instance = tempManager
+    managerSingleton.instance = tempManager
   })
 })

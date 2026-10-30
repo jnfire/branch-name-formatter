@@ -10,6 +10,9 @@ const props = withDefaults(defineProps<{
   size?: 'md' | 'sm';
   disabled?: boolean;
 }>(), {
+  placeholder: undefined,
+  id: undefined,
+  name: undefined,
   size: 'md',
   disabled: false
 });
@@ -117,7 +120,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="custom-select-container" ref="containerRef" :id="id ? `${id}-container` : undefined">
+  <div :id="id ? `${id}-container` : undefined" ref="containerRef" class="custom-select-container">
     <!-- input oculto para compatibilidad con forms -->
     <input type="hidden" :name="name" :value="modelValue" />
 
@@ -128,10 +131,10 @@ onUnmounted(() => {
       class="custom-select-trigger"
       :class="{ 'custom-select-trigger--sm': size === 'sm' }"
       :disabled="disabled"
-      @click="toggleDropdown"
-      @keydown="handleTriggerKeydown"
       aria-haspopup="listbox"
       :aria-expanded="isOpen"
+      @click="toggleDropdown"
+      @keydown="handleTriggerKeydown"
     >
       <span class="select-label" :class="{ 'placeholder': !modelValue && placeholder }">{{ currentLabel }}</span>
       <span class="dropdown-arrow" :class="{ 'arrow-open': isOpen }" aria-hidden="true">▾</span>
@@ -145,8 +148,8 @@ onUnmounted(() => {
           role="presentation"
         >
           <button
-            type="button"
             :ref="(element) => setOptionRef(element, index)"
+            type="button"
             class="select-option"
             :class="{ 'option-selected': optionItem.value === modelValue }"
             role="option"

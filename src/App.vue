@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Footer from '@/components/Footer.vue'
+import AppFooter from '@/components/AppFooter.vue'
 import AppHeader from '@/components/AppHeader.vue'
 
 import AppMainView from '@/components/AppMainView.vue'
@@ -31,7 +31,7 @@ const goHome = () => {
   <AppHeader :showConfig="showConfig" @toggleConfig="toggleConfig" @home="goHome" />
 
   <div class="app-layout">
-    <header class="app-hero container" v-if="!showConfig">
+    <header v-if="!showConfig" class="app-hero container">
       <p class="subtitle">{{ $t('hero.subtitle') }}</p>
       <div class="badges">
         <span class="badge">{{ $t('hero.badges.auditable') }}</span>
@@ -44,7 +44,7 @@ const goHome = () => {
     <AppConfigurationView v-if="showConfig" :languages="languages" @close="toggleConfig" />
     <AppMainView v-else />
 
-    <Footer />
+    <AppFooter />
   </div>
 </template>
 

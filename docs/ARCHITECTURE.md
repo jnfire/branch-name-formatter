@@ -21,7 +21,7 @@ The **Branch Name Formatter** is built with a focus on simplicity, maintainabili
 - **`FormatPreview.vue`**: Renders a live example of a format's output using its own field ids as placeholder values.
 - **`CustomSelect.vue`** / **`CustomModal.vue`**: Shared, themeable replacements for native `<select>` and confirm dialogs, used throughout the app.
 - **`LangSelector.vue`** / **`FlagIcon.vue`**: The UI language switcher.
-- **`Footer.vue`**: Shows the app version (from `package.json`, injected at build time as `__APP_VERSION__`) linked to its GitHub release, plus license/source links.
+- **`AppFooter.vue`**: Shows the app version (from `package.json`, injected at build time as `__APP_VERSION__`) linked to its GitHub release, plus license/source links.
 
 ### 3. Localization (`src/i18n`)
 - One JSON file per supported language (`en`, `es`, `fr`, `de`, `it`, `pt`), loaded by `vue-i18n` in `index.ts`.
