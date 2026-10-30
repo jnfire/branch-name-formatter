@@ -10,7 +10,7 @@ const appVersion = __APP_VERSION__
         <span class="footer__version">
           •
           <a
-            :href="`https://github.com/jnfire/web-branch-name-formatter/releases/tag/v${appVersion}`"
+            :href="`https://github.com/jnfire/branch-name-formatter/releases/tag/v${appVersion}`"
             target="_blank"
             rel="noopener noreferrer"
             class="footer__version-link"
@@ -21,7 +21,7 @@ const appVersion = __APP_VERSION__
       </p>
       <div class="footer__links">
         <a
-          href="https://github.com/jnfire/web-branch-name-formatter"
+          href="https://github.com/jnfire/branch-name-formatter"
           target="_blank"
           rel="noopener noreferrer"
           class="footer__link"
@@ -30,7 +30,7 @@ const appVersion = __APP_VERSION__
         </a>
         <span class="footer__divider">|</span>
         <a
-          href="https://github.com/jnfire/web-branch-name-formatter/blob/main/LICENSE"
+          href="https://github.com/jnfire/branch-name-formatter/blob/main/LICENSE"
           target="_blank"
           rel="noopener noreferrer"
           class="footer__link"

@@ -44,7 +44,7 @@
   "footer": {
     "privacy": "Local-first development. Your data, your control.",
     "sourceCode": "View Source Code",
-    "license": "All Rights Reserved"
+    "license": "AGPL-3.0 License"
   },
   "common": {
     "cancel": "Cancel",

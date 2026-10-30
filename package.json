@@ -2,7 +2,13 @@
   "name": "branch-name-formatter",
   "version": "1.0.0",
   "private": true,
-  "license": "Proprietary",
+  "description": "Local-first web tool that generates consistent Git branch names from customizable formats, entirely in the browser.",
+  "license": "AGPL-3.0-only",
+  "author": "Javier Nicolás Pérez Mesa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnfire/branch-name-formatter.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
