@@ -29,3 +29,7 @@ The **Branch Name Formatter** is built with a focus on simplicity, maintainabili
 
 ## Privacy & Data
 No data ever leaves the user's browser. The app uses no external APIs, cookies, analytics or tracking services. Everything is stored in the browser's `localStorage`.
+
+### Shared components
+
+The header, footer, selects, settings card, icons and theme util are shared byte for byte with the other portfolio tools. What differs per app (repository and author) lives in `src/app.config.ts`. See [`DESIGN-SYSTEM.md`](DESIGN-SYSTEM.md).
