@@ -14,7 +14,7 @@ portfolio tools and includes the redesign and the new branch-format system of
 August 2026, listed at the end of this entry.
 
 ### Added
-- Credit to the author in the footer and the README, with a link to his GitHub.
+- Credit to the author in the footer and the README, with a link to the author's GitHub.
 - A design system shared byte for byte with the other portfolio tools
   (header, footer, selects, settings card, icons and theme), with a script
   that fails the build if a copy drifts (`npm run check:shared`) and a
