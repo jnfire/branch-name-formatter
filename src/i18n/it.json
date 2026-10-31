@@ -31,7 +31,8 @@
   "footer": {
     "privacy": "Sviluppo local-first. I tuoi dati, il tuo controllo.",
     "sourceCode": "Visualizza Codice Sorgente",
-    "license": "Licenza AGPL-3.0"
+    "license": "Licenza AGPL-3.0",
+    "madeBy": "Realizzato da {name}"
   },
   "common": {
     "cancel": "Annulla",

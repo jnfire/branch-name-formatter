@@ -40,4 +40,4 @@ Copyright (C) 2026 Javier Nicolás Pérez Mesa.
 This project is free software released under the [GNU Affero General Public License v3.0](LICENSE) (`AGPL-3.0-only`). You may use, study, modify and share it. If you distribute a modified version, or offer it to users over a network, you must make its source code available under the same license.
 
 ---
-Made with care, 2026.
+Made by [Javier Nicolás Pérez Mesa](https://github.com/jnfire), 2026.

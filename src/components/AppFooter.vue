@@ -38,6 +38,18 @@ const appVersion = __APP_VERSION__;
           {{ $t('footer.license') }}
         </a>
       </div>
+      <i18n-t keypath="footer.madeBy" tag="p" class="footer__text footer__author">
+        <template #name>
+          <a
+            href="https://github.com/jnfire"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+          >
+            Javier Nicolás Pérez Mesa
+          </a>
+        </template>
+      </i18n-t>
     </div>
   </footer>
 </template>
@@ -96,5 +108,9 @@ const appVersion = __APP_VERSION__;
     color: var(--border-color);
     font-size: 0.8rem;
   }
+}
+
+.footer__author {
+  margin-top: 0.75rem;
 }
 </style>
