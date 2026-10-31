@@ -1,12 +1,7 @@
 {
   "hero": {
     "title": "Branch Name Formatter",
-    "subtitle": "Formatea tus nombres de rama al instante y con consistencia. Local-first y sin registro.",
-    "badges": {
-      "auditable": "Auditable",
-      "privacy": "Local-First",
-      "serverless": "Sin Registro"
-    }
+    "subtitle": "Nombres de rama coherentes, con tus propios formatos."
   },
   "header": {
     "config": "Ajustes"
@@ -37,7 +32,7 @@
     "delete": "Borrar"
   },
   "footer": {
-    "privacy": "Desarrollo local-first. Tus datos, tu control.",
+    "privacy": "Sin cookies · Sin cuentas · Código abierto",
     "sourceCode": "Ver Código Fuente",
     "license": "Licencia AGPL-3.0",
     "madeBy": "Hecho por {name}"

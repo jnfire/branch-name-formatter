@@ -1,12 +1,7 @@
 {
   "hero": {
     "title": "Branch Name Formatter",
-    "subtitle": "Formatez vos noms de branche instantanément et de manière cohérente. Local-first et sans inscription.",
-    "badges": {
-      "auditable": "Auditable",
-      "privacy": "Local-First",
-      "serverless": "Sans Inscription"
-    }
+    "subtitle": "Des noms de branche cohérents, avec vos propres formats."
   },
   "header": {
     "config": "Paramètres"
@@ -29,7 +24,7 @@
     "delete": "Supprimer"
   },
   "footer": {
-    "privacy": "Développement local-first. Vos données, votre contrôle.",
+    "privacy": "Sans cookies · Sans compte · Open source",
     "sourceCode": "Voir le Code Source",
     "license": "Licence AGPL-3.0",
     "madeBy": "Créé par {name}"

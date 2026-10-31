@@ -1,12 +1,7 @@
 {
   "hero": {
     "title": "Branch Name Formatter",
-    "subtitle": "Format your branch names instantly and consistently. Local-first and no registration.",
-    "badges": {
-      "auditable": "Auditable",
-      "privacy": "Local-First",
-      "serverless": "No Registration"
-    }
+    "subtitle": "Consistent branch names, with your own formats."
   },
   "header": {
     "config": "Settings"
@@ -37,7 +32,7 @@
     "delete": "Delete"
   },
   "footer": {
-    "privacy": "Local-first development. Your data, your control.",
+    "privacy": "No cookies · No accounts · Open source",
     "sourceCode": "View Source Code",
     "license": "AGPL-3.0 License",
     "madeBy": "Made by {name}"

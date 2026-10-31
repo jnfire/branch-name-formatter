@@ -20,7 +20,10 @@ const emit = defineEmits<{
         :aria-label="$t('hero.title')"
         @click="emit('home')"
       >
-        <h1 class="title">{{ $t('hero.title') }}</h1>
+        <div>
+          <h1 class="title">{{ $t('hero.title') }}</h1>
+          <p class="subtitle">{{ $t('hero.subtitle') }}</p>
+        </div>
       </button>
 
       <div class="navbar-actions">
@@ -80,6 +83,15 @@ const emit = defineEmits<{
   letter-spacing: -0.02em;
   color: var(--text-main);
   margin: 0;
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0.15rem 0 0 0;
+  font-weight: 400;
+  text-align: left;
 }
 
 .navbar-actions {
@@ -114,6 +126,9 @@ const emit = defineEmits<{
   }
   .title {
     font-size: 1.05rem;
+  }
+  .subtitle {
+    display: none;
   }
 }
 </style>
