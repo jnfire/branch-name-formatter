@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-import Footer from '@/components/Footer.vue'
-import CookieBanner from '@/components/CookieBanner.vue'
-import AppHeader from '@/components/AppHeader.vue'
-import { initAnalytics } from '@/utils/analytics'
+import AppFooter from '@/components/AppFooter.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
-import AppMainView from '@/components/AppMainView.vue'
-import AppConfigurationView from '@/components/AppConfigurationView.vue'
+import AppMainView from '@/components/AppMainView.vue';
+import AppConfigurationView from '@/components/AppConfigurationView.vue';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -15,30 +13,25 @@ const languages = [
   { code: 'fr', label: 'Français' },
   { code: 'de', label: 'Deutsch' },
   { code: 'it', label: 'Italiano' },
-  { code: 'pt', label: 'Português' }
-]
+  { code: 'pt', label: 'Português' },
+];
 
-const handleCookieAccept = () => {
-  const gaId = (import.meta.env.VITE_GA_ID as string) || 'G-XXXXXXXXXX'
-  initAnalytics(gaId)
-}
-
-const showConfig = ref(false)
+const showConfig = ref(false);
 
 const toggleConfig = () => {
-  showConfig.value = !showConfig.value
-}
+  showConfig.value = !showConfig.value;
+};
 
 const goHome = () => {
-  showConfig.value = false
-}
+  showConfig.value = false;
+};
 </script>
 
 <template>
   <AppHeader :showConfig="showConfig" @toggleConfig="toggleConfig" @home="goHome" />
 
   <div class="app-layout">
-    <header class="app-hero container" v-if="!showConfig">
+    <header v-if="!showConfig" class="app-hero container">
       <p class="subtitle">{{ $t('hero.subtitle') }}</p>
       <div class="badges">
         <span class="badge">{{ $t('hero.badges.auditable') }}</span>
@@ -51,8 +44,7 @@ const goHome = () => {
     <AppConfigurationView v-if="showConfig" :languages="languages" @close="toggleConfig" />
     <AppMainView v-else />
 
-    <Footer />
-    <CookieBanner @accept="handleCookieAccept" />
+    <AppFooter />
   </div>
 </template>
 

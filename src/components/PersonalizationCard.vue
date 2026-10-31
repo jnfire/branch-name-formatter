@@ -1,35 +1,35 @@
 <!-- src/components/PersonalizationCard.vue -->
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import LangSelector from '@/components/LangSelector.vue'
-import CustomSelect from '@/components/CustomSelect.vue'
-import { getTheme, setTheme, type Theme } from '@/utils/theme'
-import { setUiLanguage, type SupportedLocale } from '@/i18n'
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import LangSelector from '@/components/LangSelector.vue';
+import CustomSelect from '@/components/CustomSelect.vue';
+import { getTheme, setTheme, type Theme } from '@/utils/theme';
+import { setUiLanguage, type SupportedLocale } from '@/i18n';
 
 defineProps<{
   languages: { code: string; label: string }[];
-}>()
+}>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const currentTheme = ref<Theme>(getTheme())
+const currentTheme = ref<Theme>(getTheme());
 
 const themeOptions = computed(() => [
   { value: 'light', label: t('settings.themeLight') },
   { value: 'dark', label: t('settings.themeDark') },
-  { value: 'system', label: t('settings.themeSystem') }
-])
+  { value: 'system', label: t('settings.themeSystem') },
+]);
 
 const handleThemeChange = (theme: string) => {
-  const newTheme = theme as Theme
-  currentTheme.value = newTheme
-  setTheme(newTheme)
-}
+  const newTheme = theme as Theme;
+  currentTheme.value = newTheme;
+  setTheme(newTheme);
+};
 
 const handleLanguageChange = (langCode: string) => {
-  setUiLanguage(langCode as SupportedLocale)
-}
+  setUiLanguage(langCode as SupportedLocale);
+};
 </script>
 
 <template>
@@ -40,8 +40,8 @@ const handleLanguageChange = (langCode: string) => {
         <label class="setting-label">{{ $t('settings.language') }}</label>
         <LangSelector
           :modelValue="$i18n.locale"
-          @update:modelValue="handleLanguageChange"
           :options="languages"
+          @update:modelValue="handleLanguageChange"
         />
       </div>
       <div class="setting-item">

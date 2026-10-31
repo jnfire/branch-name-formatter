@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import BranchItem from '@/components/BranchItem.vue'
-import type { Branch } from '@/core/Branch.ts'
+import BranchItem from '@/components/BranchItem.vue';
+import type { Branch } from '@/core/Branch.ts';
 
 const props = defineProps<{
-  branches: Branch[]
-}>()
+  branches: Branch[];
+}>();
 
-const emit = defineEmits(['deleteBranch'])
+const emit = defineEmits(['deleteBranch']);
 
 const handleDeleteBranch = (branchId: number) => {
-  emit('deleteBranch', branchId)
-}
+  emit('deleteBranch', branchId);
+};
 </script>
 
 <template>

@@ -1,38 +1,43 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import type { BranchFormatTemplate, Capitalization, FieldDefinition, LanguageProfile } from '@/core/FormatTypes'
-import CustomSelect from '@/components/CustomSelect.vue'
+import { ref, watch, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import type {
+  BranchFormatTemplate,
+  Capitalization,
+  FieldDefinition,
+  LanguageProfile,
+} from '@/core/FormatTypes';
+import CustomSelect from '@/components/CustomSelect.vue';
 
 const props = defineProps<{
-  format: BranchFormatTemplate
-}>()
+  format: BranchFormatTemplate;
+}>();
 
-const emit = defineEmits(['save', 'cancel', 'update:format', 'update-language'])
+const emit = defineEmits(['save', 'cancel', 'update:format', 'update-language']);
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const localFormat = ref<BranchFormatTemplate>(JSON.parse(JSON.stringify(props.format)))
+const localFormat = ref<BranchFormatTemplate>(JSON.parse(JSON.stringify(props.format)));
 
 // Los nombres/etiquetas de los formatos predefinidos son claves i18n (contienen un punto);
 // los de los formatos personalizados son texto libre y se muestran tal cual.
-const resolveLabel = (value: string) => value.includes('.') ? t(value) : value
+const resolveLabel = (value: string) => (value.includes('.') ? t(value) : value);
 
-const displayName = computed(() => resolveLabel(localFormat.value.name))
+const displayName = computed(() => resolveLabel(localFormat.value.name));
 
 // En los formatos predefinidos solo se puede editar si están visibles/son el predeterminado
 // y el idioma (clave para el saneado multi-idioma); el resto queda bloqueado.
 const handleLanguageChange = (language: string) => {
-  const value = language as LanguageProfile
-  localFormat.value.language = value
-  emit('update-language', value)
-}
+  const value = language as LanguageProfile;
+  localFormat.value.language = value;
+  emit('update-language', value);
+};
 
 const capitalizationOptions = computed<{ value: Capitalization; label: string }[]>(() => [
   { value: 'UPPERCASE', label: t('configurator.editor.capUpper') },
   { value: 'LOWERCASE', label: t('configurator.editor.capLower') },
-  { value: 'AS_IS', label: t('configurator.editor.capAsIs') }
-])
+  { value: 'AS_IS', label: t('configurator.editor.capAsIs') },
+]);
 
 // Los nombres de idioma se muestran siempre en su propio idioma nativo (no se traducen).
 const languageOptions: { value: LanguageProfile; label: string }[] = [
@@ -41,54 +46,65 @@ const languageOptions: { value: LanguageProfile; label: string }[] = [
   { value: 'fr', label: 'Français' },
   { value: 'de', label: 'Deutsch' },
   { value: 'it', label: 'Italiano' },
-  { value: 'pt', label: 'Português' }
-]
+  { value: 'pt', label: 'Português' },
+];
 
 const typeOptions = computed(() => [
   { value: 'text', label: t('configurator.editor.typeText') },
-  { value: 'select', label: t('configurator.editor.typeSelect') }
-])
+  { value: 'select', label: t('configurator.editor.typeSelect') },
+]);
 
-watch(() => props.format, (newFormat) => {
-  localFormat.value = JSON.parse(JSON.stringify(newFormat))
-}, { deep: true })
+watch(
+  () => props.format,
+  (newFormat) => {
+    localFormat.value = JSON.parse(JSON.stringify(newFormat));
+  },
+  { deep: true },
+);
 
-watch(localFormat, (newVal) => {
-  emit('update:format', newVal)
-}, { deep: true })
+watch(
+  localFormat,
+  (newVal) => {
+    emit('update:format', newVal);
+  },
+  { deep: true },
+);
 
 const addField = () => {
-  const newId = `campo${localFormat.value.fields.length + 1}`
+  const newId = `campo${localFormat.value.fields.length + 1}`;
   localFormat.value.fields.push({
     id: newId,
     label: t('configurator.newFieldLabel'),
     capitalization: 'AS_IS',
-    type: 'text'
-  })
-}
+    type: 'text',
+  });
+};
 
 const removeField = (index: number) => {
-  localFormat.value.fields.splice(index, 1)
-}
+  localFormat.value.fields.splice(index, 1);
+};
 
 const handleSave = () => {
-  emit('save', localFormat.value)
-}
+  emit('save', localFormat.value);
+};
 
-const rawOptionsMap = ref(new Map<FieldDefinition, string>())
+const rawOptionsMap = ref(new Map<FieldDefinition, string>());
 
 const getOptionsText = (field: FieldDefinition) => {
   if (rawOptionsMap.value.has(field)) {
-    return rawOptionsMap.value.get(field)!
+    return rawOptionsMap.value.get(field)!;
   }
-  return (field.options || []).join(', ')
-}
+  return (field.options || []).join(', ');
+};
 
 const updateOptions = (field: FieldDefinition, event: Event) => {
-  const val = (event.target as HTMLInputElement).value
-  rawOptionsMap.value.set(field, val)
-  field.options = val.split(',').map(s => s.trim()).filter(Boolean)
-}
+  const val = (event.target as HTMLInputElement).value;
+  rawOptionsMap.value.set(field, val);
+  field.options = val
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+};
 </script>
 
 <template>
@@ -98,32 +114,42 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
     </p>
 
     <div class="form-group">
-      <label for="format-name-input" class="form-label">{{ $t('configurator.editor.formatName') }}</label>
+      <label for="format-name-input" class="form-label">{{
+        $t('configurator.editor.formatName')
+      }}</label>
       <input
         id="format-name-input"
         type="text"
         :value="displayName"
+        class="input-element"
+        :disabled="format.isReadonly"
         @input="localFormat.name = ($event.target as HTMLInputElement).value"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="format-template-input" class="form-label">{{
+        $t('configurator.editor.template')
+      }}</label>
+      <input
+        id="format-template-input"
+        v-model="localFormat.templateString"
+        type="text"
         class="input-element"
         :disabled="format.isReadonly"
       />
     </div>
 
     <div class="form-group">
-      <label for="format-template-input" class="form-label">{{ $t('configurator.editor.template') }}</label>
-      <input 
-        id="format-template-input" 
-        type="text" 
-        v-model="localFormat.templateString" 
-        class="input-element" 
-        :disabled="format.isReadonly" 
-      />
-    </div>
-
-    <div class="form-group">
       <label class="form-label">{{ $t('configurator.editor.language') }}</label>
-      <CustomSelect :model-value="localFormat.language" :options="languageOptions" @update:modelValue="handleLanguageChange" />
-      <span class="help-text">{{ $t('configurator.editor.languageHelp_' + localFormat.language) }}</span>
+      <CustomSelect
+        :model-value="localFormat.language"
+        :options="languageOptions"
+        @update:modelValue="handleLanguageChange"
+      />
+      <span class="help-text">{{
+        $t('configurator.editor.languageHelp_' + localFormat.language)
+      }}</span>
     </div>
 
     <div class="fields-section">
@@ -131,41 +157,60 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
       <div v-for="(field, index) in localFormat.fields" :key="index" class="field-editor">
         <div class="field-editor-head">
           <span class="field-index">{{ $t('configurator.editor.field', { n: index + 1 }) }}</span>
-          <button 
+          <button
+            v-if="!format.isReadonly"
             type="button"
-            v-if="!format.isReadonly" 
-            @click="removeField(index)" 
-            class="icon-btn delete-btn" 
+            class="icon-btn delete-btn"
             :aria-label="`${$t('configurator.editor.deleteField')} ${index + 1}`"
             :title="$t('configurator.editor.deleteField')"
+            @click="removeField(index)"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
           </button>
         </div>
 
         <div class="field-header">
           <div class="field-control">
-            <label :for="`field-id-${index}`" class="field-label-small">{{ $t('configurator.editor.fieldId') }}</label>
-            <input 
+            <label :for="`field-id-${index}`" class="field-label-small">{{
+              $t('configurator.editor.fieldId')
+            }}</label>
+            <input
               :id="`field-id-${index}`"
-              type="text" 
-              v-model="field.id" 
-              :placeholder="$t('configurator.editor.fieldIdPlaceholder')" 
-              class="input-element small" 
-              :disabled="format.isReadonly" 
+              v-model="field.id"
+              type="text"
+              :placeholder="$t('configurator.editor.fieldIdPlaceholder')"
+              class="input-element small"
+              :disabled="format.isReadonly"
             />
           </div>
 
           <div class="field-control">
-            <label :for="`field-label-${index}`" class="field-label-small">{{ $t('configurator.editor.fieldLabel') }}</label>
+            <label :for="`field-label-${index}`" class="field-label-small">{{
+              $t('configurator.editor.fieldLabel')
+            }}</label>
             <input
               :id="`field-label-${index}`"
               type="text"
               :value="resolveLabel(field.label)"
-              @input="field.label = ($event.target as HTMLInputElement).value"
               :placeholder="$t('configurator.editor.fieldLabelPlaceholder')"
               class="input-element small"
               :disabled="format.isReadonly"
+              @input="field.label = ($event.target as HTMLInputElement).value"
             />
           </div>
 
@@ -173,10 +218,10 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
             <label class="field-label-small">{{ $t('configurator.editor.type') }}</label>
             <CustomSelect
               :model-value="field.type || 'text'"
-              @update:model-value="field.type = $event as 'text' | 'select'"
               size="sm"
               :disabled="format.isReadonly"
               :options="typeOptions"
+              @update:model-value="field.type = $event as 'text' | 'select'"
             />
           </div>
 
@@ -192,26 +237,36 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
         </div>
 
         <div v-if="field.type === 'select'" class="field-options-control">
-          <label :for="`field-options-${index}`" class="field-label-small">{{ $t('configurator.editor.options') }}</label>
+          <label :for="`field-options-${index}`" class="field-label-small">{{
+            $t('configurator.editor.options')
+          }}</label>
           <input
             :id="`field-options-${index}`"
             type="text"
             :value="getOptionsText(field)"
-            @input="updateOptions(field, $event)"
             :placeholder="$t('configurator.editor.optionsPlaceholder')"
             class="input-element small"
             :disabled="format.isReadonly"
+            @input="updateOptions(field, $event)"
           />
         </div>
       </div>
-      <button type="button" v-if="!format.isReadonly" @click="addField" class="btn-secondary">{{ $t('configurator.editor.addField') }}</button>
+      <button v-if="!format.isReadonly" type="button" class="btn-secondary" @click="addField">
+        {{ $t('configurator.editor.addField') }}
+      </button>
     </div>
 
     <div class="actions">
-      <button type="button" v-if="format.isReadonly" @click="emit('cancel')" class="btn-secondary">{{ $t('configurator.editor.close') }}</button>
+      <button v-if="format.isReadonly" type="button" class="btn-secondary" @click="emit('cancel')">
+        {{ $t('configurator.editor.close') }}
+      </button>
       <template v-else>
-        <button type="button" @click="emit('cancel')" class="btn-secondary">{{ $t('configurator.editor.cancel') }}</button>
-        <button type="button" @click="handleSave" class="btn-primary">{{ $t('configurator.editor.save') }}</button>
+        <button type="button" class="btn-secondary" @click="emit('cancel')">
+          {{ $t('configurator.editor.cancel') }}
+        </button>
+        <button type="button" class="btn-primary" @click="handleSave">
+          {{ $t('configurator.editor.save') }}
+        </button>
       </template>
     </div>
   </div>
@@ -229,7 +284,6 @@ const updateOptions = (field: FieldDefinition, event: Event) => {
   flex-direction: column;
   gap: 0.5rem;
 }
-
 
 .readonly-hint {
   font-size: 0.85rem;

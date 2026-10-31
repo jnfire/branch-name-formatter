@@ -1,49 +1,48 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import BranchForm from '@/components/BranchForm.vue'
-import BranchList from '@/components/BranchList.vue'
-import { BranchManager } from '@/core/BranchManager'
-import type { BranchFormType } from '@/core/BranchTypes'
-import type { Branch } from '@/core/Branch'
-import type { BranchFormatTemplate } from '@/core/FormatTypes'
-import { FormatManager } from '@/core/FormatManager'
+import { ref } from 'vue';
+import BranchForm from '@/components/BranchForm.vue';
+import BranchList from '@/components/BranchList.vue';
+import { BranchManager } from '@/core/BranchManager';
+import type { BranchFormType } from '@/core/BranchTypes';
+import type { Branch } from '@/core/Branch';
+import type { BranchFormatTemplate } from '@/core/FormatTypes';
 
-const branchManager = BranchManager.getInstance()
+const branchManager = BranchManager.getInstance();
 
-const branches = ref<Branch[]>(branchManager.getBranches())
-const showHistory = ref(false)
-const latestBranch = ref<Branch | null>(null)
-const copied = ref(false)
+const branches = ref<Branch[]>(branchManager.getBranches());
+const showHistory = ref(false);
+const latestBranch = ref<Branch | null>(null);
+const copied = ref(false);
 
 const copyToClipboard = async (text: string) => {
-  await navigator.clipboard.writeText(text)
-  copied.value = true
+  await navigator.clipboard.writeText(text);
+  copied.value = true;
   setTimeout(() => {
-    copied.value = false
-  }, 2000)
-}
+    copied.value = false;
+  }, 2000);
+};
 
 const updateBranches = () => {
-  branches.value = [...branchManager.getBranches()]
-}
+  branches.value = [...branchManager.getBranches()];
+};
 
 // Now handleFormSubmit receives both the template and the form data
 const handleFormSubmit = (template: BranchFormatTemplate, formData: BranchFormType) => {
   import('@/core/BranchFormatter').then(({ BranchFormatter }) => {
-    const branchName = BranchFormatter.format(template, formData)
-    branchManager.createBranch({ 
-      branchName, 
-      formatId: template.id 
-    })
-    updateBranches()
-    latestBranch.value = branches.value[0] || null
-  })
-}
+    const branchName = BranchFormatter.format(template, formData);
+    branchManager.createBranch({
+      branchName,
+      formatId: template.id,
+    });
+    updateBranches();
+    latestBranch.value = branches.value[0] || null;
+  });
+};
 
 const handleDeleteBranch = (branchId: number) => {
-  branchManager.deleteBranch(branchId)
-  updateBranches()
-}
+  branchManager.deleteBranch(branchId);
+  updateBranches();
+};
 </script>
 
 <template>
@@ -59,15 +58,15 @@ const handleDeleteBranch = (branchId: number) => {
       <h2 class="result-title">{{ $t('result.title') }}</h2>
       <div class="result-card">
         <code class="result-code">{{ latestBranch.branchName }}</code>
-        <button 
-          type="button" 
-          class="btn-primary" 
+        <button
+          type="button"
+          class="btn-primary"
           :aria-label="`${$t('result.copy')}: ${latestBranch.branchName}`"
           @click="copyToClipboard(latestBranch.branchName)"
         >
           {{ copied ? $t('result.copied') : $t('result.copy') }}
         </button>
-        <div class="sr-only" role="status" aria-live="polite" v-if="copied">
+        <div v-if="copied" class="sr-only" role="status" aria-live="polite">
           {{ $t('result.copied') }}
         </div>
       </div>
@@ -75,9 +74,9 @@ const handleDeleteBranch = (branchId: number) => {
 
     <div class="history-section">
       <div class="history-header">
-        <button 
-          type="button" 
-          class="btn-secondary toggle-btn" 
+        <button
+          type="button"
+          class="btn-secondary toggle-btn"
           :aria-expanded="showHistory"
           aria-controls="history-list-pane"
           @click="showHistory = !showHistory"

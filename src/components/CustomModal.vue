@@ -41,18 +41,18 @@ useFocusTrap(modalContainerRef, isOpenRef, handleClose);
 <template>
   <transition name="modal-fade">
     <div v-if="modelValue" class="modal-overlay" @click.self="handleClose">
-      <div 
+      <div
         ref="modalContainerRef"
-        class="modal-content" 
-        :role="danger ? 'alertdialog' : 'dialog'" 
-        aria-modal="true" 
+        class="modal-content"
+        :role="danger ? 'alertdialog' : 'dialog'"
+        aria-modal="true"
         :aria-labelledby="titleId"
         :aria-describedby="messageId"
         tabindex="-1"
       >
         <h3 :id="titleId" class="modal-title">{{ title }}</h3>
         <p :id="messageId" class="modal-message">{{ message }}</p>
-        
+
         <div class="modal-actions">
           <button type="button" class="btn-secondary" @click="handleClose">
             {{ cancelText || $t('common.cancel') }}
@@ -138,7 +138,9 @@ useFocusTrap(modalContainerRef, isOpenRef, handleClose);
 /* Animations */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .modal-fade-enter-from,

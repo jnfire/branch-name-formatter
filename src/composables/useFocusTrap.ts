@@ -8,7 +8,7 @@ const FOCUSABLE_SELECTOR =
 export function useFocusTrap(
   containerRef: Ref<HTMLElement | null>,
   isOpen: Ref<boolean>,
-  onClose: () => void
+  onClose: () => void,
 ) {
   let previouslyFocused: HTMLElement | null = null;
 
@@ -57,7 +57,7 @@ export function useFocusTrap(
         previouslyFocused = null;
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   onBeforeUnmount(() => {

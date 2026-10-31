@@ -1,34 +1,37 @@
-import { createI18n } from 'vue-i18n'
-import en from './en.json'
-import es from './es.json'
-import fr from './fr.json'
-import de from './de.json'
-import it from './it.json'
-import pt from './pt.json'
+import { createI18n } from 'vue-i18n';
+import en from './en.json';
+import es from './es.json';
+import fr from './fr.json';
+import de from './de.json';
+import it from './it.json';
+import pt from './pt.json';
 
-type MessageSchema = typeof en
+type MessageSchema = typeof en;
 
-export const supportedLocales = ['en', 'es', 'fr', 'de', 'it', 'pt'] as const
-export type SupportedLocale = (typeof supportedLocales)[number]
+export const supportedLocales = ['en', 'es', 'fr', 'de', 'it', 'pt'] as const;
+export type SupportedLocale = (typeof supportedLocales)[number];
 
-const STORAGE_KEY_UI_LANG = 'app-ui-language'
+const STORAGE_KEY_UI_LANG = 'app-ui-language';
 
 const getStoredLocale = (): SupportedLocale | null => {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY_UI_LANG)
+    const saved = localStorage.getItem(STORAGE_KEY_UI_LANG);
     if (saved && supportedLocales.includes(saved as SupportedLocale)) {
-      return saved as SupportedLocale
+      return saved as SupportedLocale;
     }
   } catch {
     // fallback if localStorage is not accessible
   }
-  return null
-}
+  return null;
+};
 
-const browserLocale = (typeof navigator !== 'undefined' ? navigator.language.split('-')[0] : 'en') as SupportedLocale
-const initialLocale = getStoredLocale() || (supportedLocales.includes(browserLocale) ? browserLocale : 'en')
+const browserLocale = (
+  typeof navigator !== 'undefined' ? navigator.language.split('-')[0] : 'en'
+) as SupportedLocale;
+const initialLocale =
+  getStoredLocale() || (supportedLocales.includes(browserLocale) ? browserLocale : 'en');
 
-const i18n = createI18n<[MessageSchema], SupportedLocale>({
+const i18n = createI18n<[MessageSchema], SupportedLocale, false>({
   legacy: false,
   locale: initialLocale,
   fallbackLocale: 'en',
@@ -38,30 +41,31 @@ const i18n = createI18n<[MessageSchema], SupportedLocale>({
     fr,
     de,
     it,
-    pt
-  }
-})
+    pt,
+  },
+});
 
-export const getUiLanguage = (): SupportedLocale => {
-  const globalI18n = i18n.global as any
-  const loc = globalI18n.locale.value ?? globalI18n.locale
-  return (loc as SupportedLocale) || initialLocale
-}
+// Keep <html lang> in sync so screen readers pronounce the UI correctly.
+const syncDocumentLanguage = (locale: SupportedLocale): void => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = locale;
+  }
+};
+
+syncDocumentLanguage(initialLocale);
+
+export const getUiLanguage = (): SupportedLocale => i18n.global.locale.value || initialLocale;
 
 export const setUiLanguage = (locale: SupportedLocale): void => {
   if (supportedLocales.includes(locale)) {
-    const globalI18n = i18n.global as any
-    if (typeof globalI18n.locale.value !== 'undefined') {
-      globalI18n.locale.value = locale
-    } else {
-      globalI18n.locale = locale
-    }
+    i18n.global.locale.value = locale;
+    syncDocumentLanguage(locale);
     try {
-      localStorage.setItem(STORAGE_KEY_UI_LANG, locale)
+      localStorage.setItem(STORAGE_KEY_UI_LANG, locale);
     } catch {
       // ignore
     }
   }
-}
+};
 
-export default i18n
+export default i18n;

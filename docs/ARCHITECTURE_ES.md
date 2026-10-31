@@ -21,11 +21,11 @@ El **Branch Name Formatter** está construido con un enfoque en la simplicidad, 
 - **`FormatPreview.vue`**: Renderiza un ejemplo en vivo del resultado de un formato, usando los propios id de sus campos como valores de ejemplo.
 - **`CustomSelect.vue`** / **`CustomModal.vue`**: Sustitutos compartidos y temáticos de los `<select>` nativos y los diálogos de confirmación, usados en toda la app.
 - **`LangSelector.vue`** / **`FlagIcon.vue`**: El selector de idioma de la interfaz.
-- **`Footer.vue`**: Muestra la versión de la app (desde `package.json`, inyectada en build como `__APP_VERSION__`) enlazada a su release de GitHub, más los enlaces de licencia/código fuente.
+- **`AppFooter.vue`**: Muestra la versión de la app (desde `package.json`, inyectada en build como `__APP_VERSION__`) enlazada a su release de GitHub, más los enlaces de licencia/código fuente.
 
 ### 3. Localización (`src/i18n`)
 - Un archivo JSON por idioma soportado (`en`, `es`, `fr`, `de`, `it`, `pt`), cargados por `vue-i18n` en `index.ts`.
 - La mayoría de textos de la interfaz se resuelven con `$t('namespace.clave')`. Los nombres y etiquetas de campo de los formatos predefinidos se guardan como claves i18n (p. ej. `formats.gitflow.name`) dentro de los datos de `FormatManager`, en vez de texto literal, para que sigan el idioma de interfaz seleccionado; los formatos personalizados guardan texto literal en su lugar. Los componentes que muestran el `name`/`label` de un formato comprueban si contiene un punto para decidir si traducirlo o mostrarlo tal cual (ver `BranchForm.vue`, `AppConfigurationView.vue`).
 
 ## Privacidad y Datos
-Ningún dato sale del navegador del usuario. No utilizamos APIs externas ni servicios de rastreo, salvo un script de analítica opt-in sujeto al consentimiento de cookies (ver `CookieBanner.vue` / `utils/analytics.ts`). Todo lo demás se almacena en el `localStorage` del navegador.
+Ningún dato sale del navegador del usuario. La app no usa APIs externas, cookies, analítica ni servicios de rastreo. Todo se almacena en el `localStorage` del navegador.

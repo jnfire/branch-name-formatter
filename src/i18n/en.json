@@ -36,15 +36,11 @@
     "copy": "Copy",
     "delete": "Delete"
   },
-  "cookies": {
-    "text": "Help us improve? We use anonymous analytics cookies to understand usage and optimize the web.",
-    "accept": "Accept",
-    "decline": "Decline"
-  },
   "footer": {
     "privacy": "Local-first development. Your data, your control.",
     "sourceCode": "View Source Code",
-    "license": "All Rights Reserved"
+    "license": "AGPL-3.0 License",
+    "madeBy": "Made by {name}"
   },
   "common": {
     "cancel": "Cancel",

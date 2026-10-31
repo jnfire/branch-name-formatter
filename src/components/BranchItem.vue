@@ -4,17 +4,17 @@
       <p class="branch__name__text">{{ props.branchName }}</p>
     </div>
     <div class="branch__buttons">
-      <button 
-        type="button" 
-        class="branch__button branch__button__copy" 
+      <button
+        type="button"
+        class="branch__button branch__button__copy"
         :aria-label="`${$t('history.copy')}: ${props.branchName}`"
         @click="copyToClipboard"
       >
         {{ $t('history.copy') }}
       </button>
-      <button 
-        type="button" 
-        class="branch__button branch__button__delete" 
+      <button
+        type="button"
+        class="branch__button branch__button__delete"
         :aria-label="`${$t('history.delete')}: ${props.branchName}`"
         @click="deleteBranch"
       >
@@ -26,19 +26,19 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  branchName: string
-  branchId: number
-}>()
+  branchName: string;
+  branchId: number;
+}>();
 
 const copyToClipboard = () => {
-  navigator.clipboard.writeText(props.branchName)
-}
+  navigator.clipboard.writeText(props.branchName);
+};
 
-const emit = defineEmits(['deleteBranch'])
+const emit = defineEmits(['deleteBranch']);
 
 const deleteBranch = () => {
-  emit('deleteBranch', props.branchId)
-}
+  emit('deleteBranch', props.branchId);
+};
 </script>
 
 <style scoped lang="scss">
@@ -110,14 +110,18 @@ const deleteBranch = () => {
       background-color: var(--text-main);
       color: var(--bg-body);
 
-      &:hover { opacity: 0.9; }
+      &:hover {
+        opacity: 0.9;
+      }
     }
 
     &__delete {
       background-color: var(--error-color);
       color: #fff;
 
-      &:hover { opacity: 0.9; }
+      &:hover {
+        opacity: 0.9;
+      }
     }
   }
 }

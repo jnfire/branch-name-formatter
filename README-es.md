@@ -12,6 +12,7 @@ Todo el procesamiento se realiza localmente en tu navegador web, garantizando un
 - **Saneado Consciente del Idioma:** Cada formato tiene un idioma asociado (los 6 idiomas que soporta la app) que controla cómo se traducen la `/` y caracteres específicos de cada idioma (`ñ`, `ß`...) al nombre de la rama.
 - **Gestión de Historial:** Mantiene un registro de tus últimos 10 nombres generados para un acceso rápido (almacenado localmente).
 - **Procesamiento Local:** Todo sucede en el lado del cliente. Sin almacenamiento ni procesamiento en servidor de tus datos de ramas.
+- **Sin rastreo:** sin cookies, sin analítica y sin registro.
 - **Interfaz:** Diseño limpio, profesional y responsivo con soporte nativo para modo oscuro/claro.
 - **Multilingüe:** Soporte completo de interfaz para Español, Inglés, Francés, Alemán, Italiano y Portugués — incluyendo el editor de formatos y los propios formatos predefinidos.
 
@@ -34,7 +35,9 @@ npm run dev
 ```
 
 ## Licencia
-Este proyecto es propietario y tiene todos los derechos reservados por Javier Nicolás Pérez Mesa. Se publica exclusivamente con fines de revisión de portafolio, auditoría de código y uso estrictamente personal. Consulta el archivo `LICENSE` para más detalles.
+Copyright (C) 2026 Javier Nicolás Pérez Mesa.
+
+Este proyecto es software libre publicado bajo la [Licencia Pública General Affero de GNU v3.0](LICENSE) (`AGPL-3.0-only`). Puedes usarlo, estudiarlo, modificarlo y compartirlo. Si distribuyes una versión modificada, o la ofreces a usuarios a través de una red, debes publicar su código fuente bajo la misma licencia.
 
 ---
-Hecho con cuidado, 2026.
+Hecho por [Javier Nicolás Pérez Mesa](https://github.com/jnfire), 2026.

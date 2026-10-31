@@ -9,14 +9,6 @@
     }
   },
   "header": {
-    "settings": {
-      "general": "General Settings",
-      "language": "Language",
-      "theme": "Theme",
-      "themeLight": "Light",
-      "themeDark": "Dark",
-      "themeSystem": "System"
-    },
     "config": "Paramètres"
   },
   "form": {
@@ -36,15 +28,11 @@
     "copy": "Copier",
     "delete": "Supprimer"
   },
-  "cookies": {
-    "text": "Nous aider à nous améliorer ? Nous utilisons des cookies d'analyse anonymes pour comprendre l'utilisation et optimiser le site.",
-    "accept": "Accepter",
-    "decline": "Refuser"
-  },
   "footer": {
     "privacy": "Développement local-first. Vos données, votre contrôle.",
     "sourceCode": "Voir le Code Source",
-    "license": "Tous Droits Réservés"
+    "license": "Licence AGPL-3.0",
+    "madeBy": "Créé par {name}"
   },
   "common": {
     "cancel": "Annuler",

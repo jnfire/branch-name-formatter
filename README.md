@@ -12,6 +12,7 @@ All processing is done locally in your web browser, ensuring **complete control*
 - **Language-Aware Sanitization:** Each format has a language profile (matching the app's 6 supported languages) that controls how `/` and language-specific characters (`ñ`, `ß`...) are translated into the branch name.
 - **History Management:** Keeps track of your last 10 generated names for quick access (stored locally).
 - **Local Processing:** Everything happens client-side. No server-side storage or processing of your branch data.
+- **No Tracking:** No cookies, no analytics and no sign-up.
 - **Interface:** Clean, professional, and responsive design with native dark/light mode support.
 - **Multi-language:** Full UI support for English, Spanish, French, German, Italian, and Portuguese — including the format editor and the built-in formats themselves.
 
@@ -34,7 +35,9 @@ npm run dev
 ```
 
 ## License
-This project is proprietary and all rights are reserved by Javier Nicolás Pérez Mesa. It is published exclusively for portfolio review, code audit, and personal use. See the `LICENSE` file for details.
+Copyright (C) 2026 Javier Nicolás Pérez Mesa.
+
+This project is free software released under the [GNU Affero General Public License v3.0](LICENSE) (`AGPL-3.0-only`). You may use, study, modify and share it. If you distribute a modified version, or offer it to users over a network, you must make its source code available under the same license.
 
 ---
-Made with care, 2026.
+Made by [Javier Nicolás Pérez Mesa](https://github.com/jnfire), 2026.

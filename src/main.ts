@@ -1,13 +1,13 @@
-import './assets/main.css'
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import i18n from './i18n'
-import { initTheme } from './utils/theme'
+import { createApp } from 'vue';
+import App from './App.vue';
+import i18n from './i18n';
+import { initTheme } from './utils/theme';
 
-initTheme()
+initTheme();
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(i18n)
-app.mount('#app')
+app.use(i18n);
+app.mount('#app');

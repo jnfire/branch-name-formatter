@@ -1,6 +1,7 @@
 <!-- src/components/LangSelector.vue -->
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
+import type { ComponentPublicInstance } from 'vue';
 import FlagIcon from './FlagIcon.vue';
 
 const props = defineProps<{
@@ -18,18 +19,18 @@ const triggerRef = ref<HTMLButtonElement | null>(null);
 const optionRefs = ref<HTMLButtonElement[]>([]);
 
 const currentLabel = computed(() => {
-  const found = props.options.find(opt => opt.code === props.modelValue);
+  const found = props.options.find((opt) => opt.code === props.modelValue);
   return found ? found.label : props.modelValue;
 });
 
-const setOptionRef = (el: any, index: number) => {
-  if (el) optionRefs.value[index] = el as HTMLButtonElement;
+const setOptionRef = (el: Element | ComponentPublicInstance | null, index: number) => {
+  if (el instanceof HTMLButtonElement) optionRefs.value[index] = el;
 };
 
 const openDropdown = async () => {
   isOpen.value = true;
   await nextTick();
-  const selectedIndex = props.options.findIndex(opt => opt.code === props.modelValue);
+  const selectedIndex = props.options.findIndex((opt) => opt.code === props.modelValue);
   optionRefs.value[selectedIndex >= 0 ? selectedIndex : 0]?.focus();
 };
 
@@ -110,15 +111,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="lang-selector-container" ref="containerRef">
+  <div ref="containerRef" class="lang-selector-container">
     <button
       ref="triggerRef"
       type="button"
       class="lang-selector-trigger"
-      @click="toggleDropdown"
-      @keydown="handleTriggerKeydown"
       aria-haspopup="listbox"
       :aria-expanded="isOpen"
+      @click="toggleDropdown"
+      @keydown="handleTriggerKeydown"
     >
       <FlagIcon :code="modelValue" />
       <span class="lang-label">{{ currentLabel }}</span>
@@ -127,14 +128,10 @@ onUnmounted(() => {
 
     <transition name="fade-slide">
       <ul v-if="isOpen" class="lang-selector-dropdown" role="listbox">
-        <li
-          v-for="(opt, index) in options"
-          :key="opt.code"
-          role="presentation"
-        >
+        <li v-for="(opt, index) in options" :key="opt.code" role="presentation">
           <button
-            type="button"
             :ref="(el) => setOptionRef(el, index)"
+            type="button"
             class="lang-option"
             :class="{ 'option-selected': opt.code === modelValue }"
             role="option"
@@ -208,7 +205,9 @@ onUnmounted(() => {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 12px -2px rgba(0, 0, 0, 0.08),
+    0 2px 6px -1px rgba(0, 0, 0, 0.04);
   padding: 0.35rem 0;
   list-style: none;
   z-index: 2000;

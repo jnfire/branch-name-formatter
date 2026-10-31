@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const appVersion = __APP_VERSION__
+const appVersion = __APP_VERSION__;
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const appVersion = __APP_VERSION__
         <span class="footer__version">
           •
           <a
-            :href="`https://github.com/jnfire/web-branch-name-formatter/releases/tag/v${appVersion}`"
+            :href="`https://github.com/jnfire/branch-name-formatter/releases/tag/v${appVersion}`"
             target="_blank"
             rel="noopener noreferrer"
             class="footer__version-link"
@@ -21,7 +21,7 @@ const appVersion = __APP_VERSION__
       </p>
       <div class="footer__links">
         <a
-          href="https://github.com/jnfire/web-branch-name-formatter"
+          href="https://github.com/jnfire/branch-name-formatter"
           target="_blank"
           rel="noopener noreferrer"
           class="footer__link"
@@ -30,7 +30,7 @@ const appVersion = __APP_VERSION__
         </a>
         <span class="footer__divider">|</span>
         <a
-          href="https://github.com/jnfire/web-branch-name-formatter/blob/main/LICENSE"
+          href="https://github.com/jnfire/branch-name-formatter/blob/main/LICENSE"
           target="_blank"
           rel="noopener noreferrer"
           class="footer__link"
@@ -38,6 +38,18 @@ const appVersion = __APP_VERSION__
           {{ $t('footer.license') }}
         </a>
       </div>
+      <i18n-t keypath="footer.madeBy" tag="p" class="footer__text footer__author">
+        <template #name>
+          <a
+            href="https://github.com/jnfire"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+          >
+            Javier Nicolás Pérez Mesa
+          </a>
+        </template>
+      </i18n-t>
     </div>
   </footer>
 </template>
@@ -96,5 +108,9 @@ const appVersion = __APP_VERSION__
     color: var(--border-color);
     font-size: 0.8rem;
   }
+}
+
+.footer__author {
+  margin-top: 0.75rem;
 }
 </style>
