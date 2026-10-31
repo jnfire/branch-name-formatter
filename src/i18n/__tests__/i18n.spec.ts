@@ -33,3 +33,29 @@ describe('i18n dictionaries', () => {
     expect(emptyKeys).toEqual([]);
   });
 });
+
+const SHARED_COMPONENT_KEYS = [
+  'header.title',
+  'header.subtitle',
+  'header.settings',
+  'header.share',
+  'footer.facts',
+  'footer.source',
+  'footer.license',
+  'footer.madeBy',
+  'settings.personalization',
+  'settings.language',
+  'settings.theme',
+  'settings.themeLight',
+  'settings.themeDark',
+  'settings.themeSystem',
+  'shared.select_option',
+];
+
+describe('keys used by the shared components', () => {
+  it.each(Object.keys({ en, ...locales }))('%s defines them all', (locale) => {
+    const messages = locale === 'en' ? en : locales[locale];
+    const defined = new Set(flattenKeys(messages));
+    expect(SHARED_COMPONENT_KEYS.filter((key) => !defined.has(key))).toEqual([]);
+  });
+});

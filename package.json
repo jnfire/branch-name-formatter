@@ -23,7 +23,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:shared": "node scripts/check-shared.mjs"
   },
   "dependencies": {
     "vue": "^3.5.44",

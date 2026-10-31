@@ -1,18 +1,17 @@
 {
-  "hero": {
-    "title": "Branch Name Formatter",
-    "subtitle": "Consistent branch names, with your own formats."
-  },
   "header": {
-    "config": "Settings"
+    "title": "Branch Name Formatter",
+    "subtitle": "Consistent branch names, with your own formats.",
+    "settings": "Open settings",
+    "share": "Share link"
   },
   "settings": {
-    "general": "Personalization",
     "language": "Language",
     "theme": "Theme",
     "themeLight": "Light",
     "themeDark": "Dark",
-    "themeSystem": "System"
+    "themeSystem": "System",
+    "personalization": "Personalization"
   },
   "form": {
     "formatLabel": "Format",
@@ -32,10 +31,10 @@
     "delete": "Delete"
   },
   "footer": {
-    "privacy": "No cookies · No accounts · Open source",
-    "sourceCode": "View Source Code",
     "license": "AGPL-3.0 License",
-    "madeBy": "Made by {name}"
+    "madeBy": "Made by {name}",
+    "facts": "No cookies · No accounts · Open source",
+    "source": "View Source Code"
   },
   "common": {
     "cancel": "Cancel",
@@ -123,5 +122,8 @@
       "scope": "Scope",
       "description": "Description"
     }
+  },
+  "shared": {
+    "select_option": "Select an option"
   }
 }

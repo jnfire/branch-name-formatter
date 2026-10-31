@@ -1,0 +1,13 @@
+{
+  "note": "Files shared, byte for byte, by base64-to-file, branch-name-formatter and desplaza. See docs/DESIGN-SYSTEM.md.",
+  "files": {
+    "components/AppFooter.vue": "200f34297588dd2ca83fea6e6637f648cc74f4a50a1c25ba575d100470e76b67",
+    "components/AppHeader.vue": "47f25fb9bde23abd772ef345a8c699ae88708cb551aeb2c7e27289ece93f2940",
+    "components/CustomSelect.vue": "5050c45f8c804ed42693ea9b58fbdfaddc0173da6d7f3fc7f1fa691ae760e066",
+    "components/FlagIcon.vue": "4e489128010675cb377ff6f9381dad36b5297e288282e1143f614438d2cd24c6",
+    "components/LangSelector.vue": "0f22157898f43d90399527545119ee0dde1a8f9d22675c27cb1933d24dbe1df8",
+    "components/PersonalizationCard.vue": "01fdaf304c71db67a22b8fc44b7249144f80e3a6a6d1d2709046c65ddd631adc",
+    "components/SettingsIcon.vue": "e172bb8b9dde3af524352cd334c82ba49978cc3a23d4d12683e74fb208fb6f9a",
+    "utils/theme.ts": "915d64cf88ffb574ade4e474aaa7837031b6a953973ba7bdf3ebd5c79fbdb6d5"
+  }
+}

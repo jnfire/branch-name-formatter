@@ -1,10 +1,9 @@
 {
-  "hero": {
-    "title": "Branch Name Formatter",
-    "subtitle": "Nomi di branch coerenti, con i tuoi formati."
-  },
   "header": {
-    "config": "Impostazioni"
+    "title": "Branch Name Formatter",
+    "subtitle": "Nomi di branch coerenti, con i tuoi formati.",
+    "settings": "Apri le impostazioni",
+    "share": "Condividi il link"
   },
   "form": {
     "formatLabel": "Formato",
@@ -24,10 +23,10 @@
     "delete": "Elimina"
   },
   "footer": {
-    "privacy": "Senza cookie · Senza account · Open source",
-    "sourceCode": "Visualizza Codice Sorgente",
     "license": "Licenza AGPL-3.0",
-    "madeBy": "Realizzato da {name}"
+    "madeBy": "Realizzato da {name}",
+    "facts": "Senza cookie · Senza account · Open source",
+    "source": "Visualizza Codice Sorgente"
   },
   "common": {
     "cancel": "Annulla",
@@ -117,11 +116,14 @@
     }
   },
   "settings": {
-    "general": "Personalizzazione",
     "language": "Lingua",
     "theme": "Tema",
     "themeLight": "Chiaro",
     "themeDark": "Scuro",
-    "themeSystem": "Sistema"
+    "themeSystem": "Sistema",
+    "personalization": "Personalizzazione"
+  },
+  "shared": {
+    "select_option": "Seleziona un'opzione"
   }
 }

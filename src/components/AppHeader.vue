@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import SettingsIcon from '@/components/SettingsIcon.vue';
+import { useI18n } from 'vue-i18n';
+import SettingsIcon from './SettingsIcon.vue';
 
 defineProps<{
-  showConfig: boolean;
+  showSettings: boolean;
+  /** Shows the share button; the app handles the `share` event. */
+  showShare?: boolean;
 }>();
 
 const emit = defineEmits<{
-  (emitEvent: 'toggleConfig'): void;
-  (emitEvent: 'home'): void;
+  (e: 'home'): void;
+  (e: 'toggle-settings'): void;
+  (e: 'share'): void;
 }>();
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -17,23 +23,50 @@ const emit = defineEmits<{
       <button
         type="button"
         class="navbar-brand"
-        :aria-label="$t('hero.title')"
+        :aria-label="t('header.title')"
         @click="emit('home')"
       >
         <div>
-          <h1 class="title">{{ $t('hero.title') }}</h1>
-          <p class="subtitle">{{ $t('hero.subtitle') }}</p>
+          <h1 class="title">{{ t('header.title') }}</h1>
+          <p class="subtitle">{{ t('header.subtitle') }}</p>
         </div>
       </button>
 
       <div class="navbar-actions">
         <button
+          v-if="showShare"
           type="button"
           class="btn-secondary config-toggle"
-          :class="{ 'config-toggle--active': showConfig }"
-          :aria-pressed="showConfig"
-          :aria-label="$t('configurator.title') || 'Settings'"
-          @click="emit('toggleConfig')"
+          :aria-label="t('header.share')"
+          :title="t('header.share')"
+          @click="emit('share')"
+        >
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="btn-secondary config-toggle"
+          :class="{ 'config-toggle--active': showSettings }"
+          :aria-label="t('header.settings')"
+          :title="t('header.settings')"
+          :aria-expanded="showSettings"
+          @click="emit('toggle-settings')"
         >
           <SettingsIcon class="icon" />
         </button>
@@ -42,13 +75,13 @@ const emit = defineEmits<{
   </header>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .navbar {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 2000;
   padding: 0.75rem 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -70,11 +103,12 @@ const emit = defineEmits<{
   cursor: pointer;
   font-family: inherit;
   border-radius: 6px;
+  text-decoration: none;
+}
 
-  &:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 4px;
-  }
+.navbar-brand:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
 }
 
 .title {
@@ -103,24 +137,45 @@ const emit = defineEmits<{
 .config-toggle {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   font-size: 0.9rem;
   padding: 0.4rem 0.8rem;
-
-  &--active {
-    background-color: var(--accent-color);
-    color: var(--bg-body);
-    border-color: var(--accent-color);
-
-    &:hover {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-      opacity: 0.9;
-    }
-  }
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-@media (max-width: vars.$bp-mobile) {
+.config-toggle:hover {
+  background-color: var(--bg-surface-hover, rgba(0, 0, 0, 0.05));
+}
+
+.config-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.config-toggle--active {
+  background-color: var(--accent-color);
+  color: var(--bg-body);
+  border-color: var(--accent-color);
+}
+
+.config-toggle--active:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  opacity: 0.9;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 600px) {
   .navbar-container {
     padding: 0 1rem;
   }

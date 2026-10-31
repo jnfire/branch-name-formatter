@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import CustomSelect from '../CustomSelect.vue';
+import i18n from '@/i18n';
 import { nextTick } from 'vue';
 
 describe('CustomSelect', () => {
@@ -12,6 +13,7 @@ describe('CustomSelect', () => {
 
   it('renders correctly with initial value', () => {
     const wrapper = mount(CustomSelect, {
+      global: { plugins: [i18n] },
       props: {
         modelValue: 'opt2',
         options,
@@ -23,6 +25,7 @@ describe('CustomSelect', () => {
 
   it('shows placeholder when no value is provided', () => {
     const wrapper = mount(CustomSelect, {
+      global: { plugins: [i18n] },
       props: {
         modelValue: '',
         options,
@@ -35,6 +38,7 @@ describe('CustomSelect', () => {
 
   it('toggles dropdown on click', async () => {
     const wrapper = mount(CustomSelect, {
+      global: { plugins: [i18n] },
       props: { modelValue: '', options },
     });
     const trigger = wrapper.find('.custom-select-trigger');
@@ -55,6 +59,7 @@ describe('CustomSelect', () => {
 
   it('emits update:modelValue on option click', async () => {
     const wrapper = mount(CustomSelect, {
+      global: { plugins: [i18n] },
       props: { modelValue: '', options },
     });
 
@@ -71,6 +76,7 @@ describe('CustomSelect', () => {
 
   it('supports keyboard navigation', async () => {
     const wrapper = mount(CustomSelect, {
+      global: { plugins: [i18n] },
       props: { modelValue: 'opt1', options },
     });
 

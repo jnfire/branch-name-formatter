@@ -1,1 +1,30 @@
 @import './base.css';
+
+/* Settings cards, shared layout with the other portfolio tools. */
+.settings-card {
+  background-color: var(--bg-surface);
+  padding: 1.75rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.settings-card .section-title {
+  margin: 0 0 1.25rem 0;
+  color: var(--text-main);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .settings-card {
+    padding: 1.25rem 1rem;
+  }
+}

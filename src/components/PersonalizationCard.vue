@@ -2,23 +2,28 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import LangSelector from '@/components/LangSelector.vue';
-import CustomSelect from '@/components/CustomSelect.vue';
-import { getTheme, setTheme, type Theme } from '@/utils/theme';
-import { setUiLanguage, type SupportedLocale } from '@/i18n';
+import LangSelector from './LangSelector.vue';
+import CustomSelect from './CustomSelect.vue';
+import { getTheme, setTheme, type Theme } from '../utils/theme';
+import { setUiLanguage, type SupportedLocale } from '../i18n';
 
-defineProps<{
-  languages: { code: string; label: string }[];
-}>();
+const { t, locale } = useI18n();
 
-const { t } = useI18n();
+const languages = [
+  { code: 'en', label: 'English' },
+  { code: 'es', label: 'Español' },
+  { code: 'fr', label: 'Français' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'pt', label: 'Português' },
+];
 
 const currentTheme = ref<Theme>(getTheme());
 
 const themeOptions = computed(() => [
-  { value: 'light', label: t('settings.themeLight') },
-  { value: 'dark', label: t('settings.themeDark') },
-  { value: 'system', label: t('settings.themeSystem') },
+  { value: 'light', label: t('settings.themeLight') || 'Light' },
+  { value: 'dark', label: t('settings.themeDark') || 'Dark' },
+  { value: 'system', label: t('settings.themeSystem') || 'System' },
 ]);
 
 const handleThemeChange = (theme: string) => {
@@ -33,19 +38,19 @@ const handleLanguageChange = (langCode: string) => {
 </script>
 
 <template>
-  <div class="config-card general-settings-card">
-    <h3 class="section-title">{{ $t('settings.general') }}</h3>
+  <section class="settings-card" :aria-label="t('settings.personalization') || 'Personalization'">
+    <h3 class="section-title">{{ t('settings.personalization') || 'Personalization' }}</h3>
     <div class="settings-grid">
       <div class="setting-item">
-        <label class="setting-label">{{ $t('settings.language') }}</label>
+        <label class="setting-label">{{ t('settings.language') || 'Language' }}</label>
         <LangSelector
-          :modelValue="$i18n.locale"
+          :modelValue="locale"
           :options="languages"
           @update:modelValue="handleLanguageChange"
         />
       </div>
       <div class="setting-item">
-        <label class="setting-label">{{ $t('settings.theme') }}</label>
+        <label class="setting-label">{{ t('settings.theme') || 'Theme' }}</label>
         <CustomSelect
           :modelValue="currentTheme"
           :options="themeOptions"
@@ -53,41 +58,10 @@ const handleLanguageChange = (langCode: string) => {
         />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
-<style scoped lang="scss">
-.config-card {
-  background-color: var(--bg-surface);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-
-  @media (max-width: vars.$bp-mobile) {
-    padding: 1.25rem 1rem;
-  }
-}
-
-.section-title {
-  margin: 0;
-  color: var(--text-main);
-  font-size: 1.15rem;
-  font-weight: 600;
-}
-
-.general-settings-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.settings-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.25rem;
-}
-
+<style scoped>
 .setting-item {
   display: flex;
   flex-direction: column;

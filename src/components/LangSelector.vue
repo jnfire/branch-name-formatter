@@ -149,7 +149,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .lang-selector-container {
   position: relative;
   display: block;
@@ -157,7 +157,7 @@ onUnmounted(() => {
 }
 
 .lang-selector-trigger {
-  background: var(--bg-surface);
+  background: var(--bg-body);
   border: 1px solid var(--border-color);
   color: var(--text-main);
   padding: 0.85rem 1rem;
@@ -176,14 +176,14 @@ onUnmounted(() => {
 }
 
 .lang-selector-trigger:hover {
-  background: var(--bg-surface-hover);
+  background: var(--bg-surface-hover, rgba(0, 0, 0, 0.05));
   border-color: var(--text-muted);
 }
 
 .lang-selector-trigger:focus-visible {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px var(--accent-color-alpha);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-arrow {
@@ -202,7 +202,7 @@ onUnmounted(() => {
   top: calc(100% + 0.35rem);
   left: 0;
   width: 100%;
-  background-color: var(--bg-surface);
+  background-color: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow:
@@ -233,7 +233,7 @@ onUnmounted(() => {
 
 .lang-option:hover,
 .lang-option:focus-visible {
-  background-color: var(--bg-surface-hover);
+  background-color: var(--bg-surface-hover, rgba(0, 0, 0, 0.05));
 }
 
 .option-selected {

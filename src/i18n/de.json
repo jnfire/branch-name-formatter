@@ -1,10 +1,9 @@
 {
-  "hero": {
-    "title": "Branch Name Formatter",
-    "subtitle": "Einheitliche Branch-Namen, mit eigenen Formaten."
-  },
   "header": {
-    "config": "Einstellungen"
+    "title": "Branch Name Formatter",
+    "subtitle": "Einheitliche Branch-Namen, mit eigenen Formaten.",
+    "settings": "Einstellungen öffnen",
+    "share": "Link teilen"
   },
   "form": {
     "formatLabel": "Format",
@@ -24,10 +23,10 @@
     "delete": "Löschen"
   },
   "footer": {
-    "privacy": "Keine Cookies · Keine Konten · Open Source",
-    "sourceCode": "Quellcode Anzeigen",
     "license": "Lizenz AGPL-3.0",
-    "madeBy": "Erstellt von {name}"
+    "madeBy": "Erstellt von {name}",
+    "facts": "Keine Cookies · Keine Konten · Open Source",
+    "source": "Quellcode Anzeigen"
   },
   "common": {
     "cancel": "Abbrechen",
@@ -117,11 +116,14 @@
     }
   },
   "settings": {
-    "general": "Personalisierung",
     "language": "Sprache",
     "theme": "Thema",
     "themeLight": "Hell",
     "themeDark": "Dunkel",
-    "themeSystem": "System"
+    "themeSystem": "System",
+    "personalization": "Personalisierung"
+  },
+  "shared": {
+    "select_option": "Option auswählen"
   }
 }
