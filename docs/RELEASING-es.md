@@ -18,3 +18,5 @@ Las versiones siguen el [versionado semántico](https://semver.org/lang/es/): un
 5. El workflow **Release** comprueba que la etiqueta coincide con `package.json`, toma las notas de `CHANGELOG.md` y crea la release de GitHub. El enlace de la versión en el pie de la app apunta a esa release.
 
 Si el workflow falla porque el changelog no tiene sección para la versión, corrige `CHANGELOG.md`, borra la etiqueta (`git push origin --delete vx.y.z`) y vuelve a etiquetar.
+
+Las etiquetas y releases no se borran ni se renumeran, aunque cambie el diseño o la estrategia de versiones: el historial es parte del proyecto. Una versión nueva siempre continúa desde la última etiqueta.

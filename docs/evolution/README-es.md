@@ -6,6 +6,12 @@ Cómo Branch Name Formatter pasó de su primer commit a hoy, con las capturas pa
 
 ![Branch Name Formatter en tres etapas, escritorio](branch-name-formatter-evolution-desktop.png)
 
+## La historia
+
+Branch Name Formatter es la aplicación cuyo diseño más ha cambiado, y su cambio más radical es el rediseño de agosto de 2026. El generador oscuro con una sola fila de campos pasó a ser una herramienta construida alrededor de formatos que defines tú: un editor con vista previa en vivo, mayúsculas por campo, perfiles de idioma y un historial. En octubre se alineó con las otras herramientas, lo que simplificó la página (sin bloque de presentación, los hechos en el pie) y le dio los componentes compartidos.
+
+Versiones: la v0.1.0 (octubre de 2025) y la v0.2.0 (mayo de 2026) se quedan como estaban. El rediseño de agosto de 2026 se documentó como 1.0.0 en el registro de cambios pero nunca se etiquetó; sale ahora junto con el trabajo de octubre.
+
 ## Cronología
 
 | Cuándo | Qué pasó |
@@ -14,7 +20,7 @@ Cómo Branch Name Formatter pasó de su primer commit a hoy, con las capturas pa
 | Octubre de 2025 | Primera versión (v0.1.0): un "branch-name-generator" oscuro con una sola fila de campos. En la misma versión se unificó el estilo visual con las otras herramientas local-first del autor y llegaron el inglés y el español. |
 | Mayo de 2026 | v0.2.0: selector de idioma propio con banderas y mejor accesibilidad con teclado. |
 | Agosto de 2026 | Rediseño completo y un nuevo sistema de formatos: el editor de formatos propios con vista previa en vivo, mayúsculas por campo, perfiles de idioma y el historial. |
-| Octubre de 2026 | Software libre (AGPL-3.0), sin Google Analytics ni banner de cookies, un sistema de diseño compartido con las otras dos herramientas, CI que condiciona cada despliegue y la primera versión estable. |
+| Octubre de 2026 | Software libre (AGPL-3.0), sin Google Analytics ni banner de cookies, un sistema de diseño compartido con las otras dos herramientas, CI que condiciona cada despliegue y la versión 1.0.0, el paso siguiente a la 0.1.0 y la 0.2.0. |
 
 ## En cifras
 
