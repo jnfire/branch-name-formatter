@@ -1,12 +1,7 @@
 {
   "hero": {
     "title": "Branch Name Formatter",
-    "subtitle": "Formatta i tuoi nomi di branch istantaneamente e in modo coerente. Local-first e senza registrazione.",
-    "badges": {
-      "auditable": "Verificabile",
-      "privacy": "Local-First",
-      "serverless": "Senza Registrazione"
-    }
+    "subtitle": "Nomi di branch coerenti, con i tuoi formati."
   },
   "header": {
     "config": "Impostazioni"
@@ -29,7 +24,7 @@
     "delete": "Elimina"
   },
   "footer": {
-    "privacy": "Sviluppo local-first. I tuoi dati, il tuo controllo.",
+    "privacy": "Senza cookie · Senza account · Open source",
     "sourceCode": "Visualizza Codice Sorgente",
     "license": "Licenza AGPL-3.0",
     "madeBy": "Realizzato da {name}"
