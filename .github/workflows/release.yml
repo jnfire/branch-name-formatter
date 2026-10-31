@@ -1,0 +1,40 @@
+name: Release
+
+# Pushing a tag such as v1.0.0 creates the GitHub release, using the matching
+# section of CHANGELOG.md as its notes. See docs/RELEASING.md.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check that the tag matches package.json
+        run: |
+          package_version="v$(node -p "require('./package.json').version")"
+          if [ "$package_version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match package.json ($package_version)."
+            exit 1
+          fi
+
+      - name: Extract the release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v heading="## [$version]" 'index($0, heading) == 1 { found = 1; next } found && /^## / { exit } found' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "No section for $version in CHANGELOG.md."
+            exit 1
+          fi
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file release-notes.md --verify-tag
