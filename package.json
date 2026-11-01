@@ -1,6 +1,6 @@
 {
   "name": "branch-name-formatter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Local-first web tool that generates consistent Git branch names from customizable formats, entirely in the browser.",
   "license": "AGPL-3.0-only",

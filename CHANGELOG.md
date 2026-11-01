@@ -7,7 +7,7 @@ and this project uses [Semantic Versioning](https://semver.org/). The version
 number lives in a single place, `package.json`, and is shown live in the app
 footer.
 
-## [Unreleased]
+## [1.1.0] - 2026-11-01
 
 ### Added
 - The name updates while you type, with each field of the format in its own color. The generate button is gone: **Copy name** copies it and saves it to the history in one step, and pressing Enter does the same once every field is filled in.
