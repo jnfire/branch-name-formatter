@@ -23,6 +23,10 @@ footer.
 - The settings screen now has only the language, the theme and the backup of the formats. Editing formats moved to its own section.
 - The history uses icon buttons, and the delete button is only red on hover, using the error color of the theme.
 - Texts of the editor are in sentence case in all six languages.
+- Text sizes and spaces follow one scale (12, 13.6 and 15.2 px for text, multiples of 4 px for spaces), and buttons use the same text size as the fields instead of the browser's default.
+
+### Fixed
+- On the main screen, a format with many fields left a wide gap between the name and the history cards.
 
 ### Removed
 - `AppConfigurationView.vue`, replaced by the formats and settings screens.

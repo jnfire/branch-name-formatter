@@ -24,6 +24,7 @@
   .workbench {
     max-width: 960px;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
     grid-template-areas: 'form output' 'form history';
   }
   .wb-form {
@@ -33,7 +34,7 @@
 }
 
 .card-title {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -78,8 +79,8 @@
   display: block;
 }
 .format-meta {
-  margin: 0.6rem 0 0;
-  font-size: 0.8rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
   color: var(--text-muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   overflow-wrap: anywhere;
@@ -92,7 +93,7 @@
 .fields {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 .field {
   display: flex;
@@ -132,7 +133,7 @@
   color: var(--text-main);
   overflow-wrap: anywhere;
   word-break: break-word;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
   display: block;
   min-height: 2.1em;
 }
@@ -200,7 +201,7 @@
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 0.4rem 0.5rem 0.4rem 0.9rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   min-height: 48px;
 }
 .hist-row.is-new {
@@ -211,7 +212,7 @@
   flex: 1;
   min-width: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--text-main);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -291,7 +292,7 @@
   .hist-name {
     white-space: normal;
     overflow-wrap: anywhere;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.4;
     padding: 0.25rem 0;
   }
@@ -377,7 +378,7 @@
 }
 .st-help {
   margin: 0 0 1.25rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   max-width: 62ch;
 }
@@ -451,7 +452,7 @@
   color: var(--text-main);
 }
 .chip {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.5;
   padding: 0.05rem 0.5rem;
@@ -496,7 +497,7 @@
 }
 .status {
   margin: 1rem 0 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-main);
   display: flex;
   align-items: center;
@@ -555,7 +556,7 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 .ed-help {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.4;
   margin: 0;
@@ -585,7 +586,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
   min-height: 36px;
 }
 .fld-head .card-title {
@@ -593,7 +594,7 @@
 }
 .fld-head .tok-chip {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--c);
   background: color-mix(in srgb, var(--c) 13%, var(--bg-body));
@@ -607,7 +608,7 @@
 }
 .fld-grid {
   display: grid;
-  gap: 0.9rem;
+  gap: 1rem;
   grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 601px) {
@@ -621,7 +622,7 @@
   }
 }
 .fld-grid .ed-label {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: none;
   letter-spacing: 0;
   font-weight: 500;
@@ -631,7 +632,7 @@
   font-size: 0.9rem;
 }
 .fld-opts {
-  margin-top: 0.9rem;
+  margin-top: 1rem;
 }
 .ed-actions {
   display: flex;
@@ -713,14 +714,14 @@
   }
 }
 .fm-list .fmt-list {
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 .fm-row {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
   border-radius: 10px;
   background: var(--bg-body);
@@ -749,7 +750,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 .dp-title {
   display: flex;
@@ -772,9 +773,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0.45rem 0.9rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 .dp-actions .danger:hover {
   color: var(--error-color);
@@ -784,8 +785,8 @@
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 0.85rem 1rem;
-  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
   display: flex;
@@ -833,7 +834,7 @@
   margin-top: 0.5rem;
 }
 .try-grid .ed-label {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: none;
   letter-spacing: 0;
   font-weight: 500;
@@ -856,14 +857,14 @@
   align-items: center;
   gap: 0.6rem;
   flex-wrap: wrap;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 1rem;
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: 10px;
 }
 .ro-field .meta {
   margin-left: auto;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 .ro-field .name {
@@ -923,7 +924,7 @@
   }
 }
 .template-field {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
 }
 .warn-ico {
   width: 14px;
@@ -938,7 +939,7 @@
 }
 .tok-chip {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--c);
   background: color-mix(in srgb, var(--c) 13%, var(--bg-body));
