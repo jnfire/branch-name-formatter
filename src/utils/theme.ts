@@ -24,6 +24,7 @@ export const setTheme = (theme: Theme) => {
 };
 
 export const applyTheme = (theme: Theme) => {
+  if (typeof document === 'undefined') return;
   const rootElement = document.documentElement;
   if (theme === 'system') {
     rootElement.removeAttribute('data-theme');

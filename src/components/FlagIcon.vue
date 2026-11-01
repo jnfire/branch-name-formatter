@@ -55,7 +55,7 @@ defineProps<{
   </svg>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .flag-icon {
   width: 1.15em;
   height: 0.77em;

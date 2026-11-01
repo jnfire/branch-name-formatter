@@ -7,15 +7,6 @@ import AppHeader from '@/components/AppHeader.vue';
 import AppMainView from '@/components/AppMainView.vue';
 import AppConfigurationView from '@/components/AppConfigurationView.vue';
 
-const languages = [
-  { code: 'en', label: 'English' },
-  { code: 'es', label: 'Español' },
-  { code: 'fr', label: 'Français' },
-  { code: 'de', label: 'Deutsch' },
-  { code: 'it', label: 'Italiano' },
-  { code: 'pt', label: 'Português' },
-];
-
 const showConfig = ref(false);
 
 const toggleConfig = () => {
@@ -28,11 +19,11 @@ const goHome = () => {
 </script>
 
 <template>
-  <AppHeader :showConfig="showConfig" @toggleConfig="toggleConfig" @home="goHome" />
+  <AppHeader :showSettings="showConfig" @toggle-settings="toggleConfig" @home="goHome" />
 
   <div class="app-layout">
     <!-- Simulación de router con v-if -->
-    <AppConfigurationView v-if="showConfig" :languages="languages" @close="toggleConfig" />
+    <AppConfigurationView v-if="showConfig" @close="toggleConfig" />
     <AppMainView v-else />
 
     <AppFooter />

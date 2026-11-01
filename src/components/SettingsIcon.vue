@@ -21,7 +21,7 @@
   </svg>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .settings-icon {
   width: 1.1rem;
   height: 1.1rem;

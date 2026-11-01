@@ -6,6 +6,10 @@ A fast, local-first web tool designed for developers to generate consistent Git 
 
 All processing is done locally in your web browser, ensuring **complete control** of your data (Local-First). Built with **Vue 3 (Composition API)** and **TypeScript**.
 
+**▶ [Try it: branches.jnfire.dev/](https://branches.jnfire.dev/)**
+
+![Branch Name Formatter on desktop and mobile](docs/screenshots/branch-name-formatter-hero.png)
+
 ## Key Features
 - **Dynamic Branch Formats:** Comes with three ready-to-use formats (default app format, GitFlow, Conventional Commits) and lets you create, clone, edit, or delete your own from the Settings screen, with a live preview as you type.
 - **Guaranteed Valid Names:** Sanitization (removing accents, spaces, dots, special characters, collapsing dashes...) is always applied, so every generated name is a valid git branch name. You only choose the capitalization per field (uppercase, lowercase, or as-is).
@@ -33,6 +37,17 @@ Notable changes per version are tracked in [`CHANGELOG.md`](CHANGELOG.md). The v
 npm install
 npm run dev
 ```
+
+## 📚 Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Design system](docs/DESIGN-SYSTEM.md), shared with the other portfolio tools
+- [Roadmap](docs/ROADMAP.md)
+- [Evolution](docs/evolution/README.md): how the project has changed, with screenshots
+
+## 🤝 Development
+
+Designed and directed by [Javier Nicolás Pérez Mesa](https://github.com/jnfire): the product, the architecture and the design decisions are the author's. AI has been part of the work as a deliberate experiment in learning new technology: Gemini CLI, Antigravity, GitHub Copilot and Claude Code, tried one after another. It began with small interventions and, as the experiment went on, moved towards more autonomy, always through pull requests that the author reviews. Commits made with Claude Code carry a `Co-Authored-By` trailer.
 
 ## License
 Copyright (C) 2026 Javier Nicolás Pérez Mesa.

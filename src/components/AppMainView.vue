@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import BranchForm from '@/components/BranchForm.vue';
 import BranchList from '@/components/BranchList.vue';
 import { BranchManager } from '@/core/BranchManager';
+import { BranchFormatter } from '@/core/BranchFormatter';
 import type { BranchFormType } from '@/core/BranchTypes';
 import type { Branch } from '@/core/Branch';
 import type { BranchFormatTemplate } from '@/core/FormatTypes';
@@ -28,15 +29,13 @@ const updateBranches = () => {
 
 // Now handleFormSubmit receives both the template and the form data
 const handleFormSubmit = (template: BranchFormatTemplate, formData: BranchFormType) => {
-  import('@/core/BranchFormatter').then(({ BranchFormatter }) => {
-    const branchName = BranchFormatter.format(template, formData);
-    branchManager.createBranch({
-      branchName,
-      formatId: template.id,
-    });
-    updateBranches();
-    latestBranch.value = branches.value[0] || null;
+  const branchName = BranchFormatter.format(template, formData);
+  branchManager.createBranch({
+    branchName,
+    formatId: template.id,
   });
+  updateBranches();
+  latestBranch.value = branches.value[0] || null;
 };
 
 const handleDeleteBranch = (branchId: number) => {

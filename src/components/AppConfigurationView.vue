@@ -8,10 +8,6 @@ import FormatEditor from '@/components/FormatEditor.vue';
 import CustomModal from '@/components/CustomModal.vue';
 import PersonalizationCard from '@/components/PersonalizationCard.vue';
 
-defineProps<{
-  languages: { code: string; label: string }[];
-}>();
-
 defineEmits(['close']);
 
 const { t, locale } = useI18n();
@@ -304,7 +300,7 @@ const triggerFileInput = (keyboardEvent: KeyboardEvent) => {
     </div>
 
     <!-- Personalization / System Settings Card -->
-    <PersonalizationCard :languages="languages" />
+    <PersonalizationCard />
 
     <CustomModal
       v-model="showDeleteModal"

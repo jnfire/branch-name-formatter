@@ -1,18 +1,17 @@
 {
-  "hero": {
-    "title": "Branch Name Formatter",
-    "subtitle": "Nombres de rama coherentes, con tus propios formatos."
-  },
   "header": {
-    "config": "Ajustes"
+    "title": "Branch Name Formatter",
+    "subtitle": "Nombres de rama coherentes, con tus propios formatos.",
+    "settings": "Abrir configuración",
+    "share": "Compartir enlace"
   },
   "settings": {
-    "general": "Personalización",
     "language": "Idioma",
     "theme": "Tema",
     "themeLight": "Claro",
     "themeDark": "Oscuro",
-    "themeSystem": "Sistema"
+    "themeSystem": "Sistema",
+    "personalization": "Personalización"
   },
   "form": {
     "formatLabel": "Formato",
@@ -32,10 +31,10 @@
     "delete": "Borrar"
   },
   "footer": {
-    "privacy": "Sin cookies · Sin cuentas · Código abierto",
-    "sourceCode": "Ver Código Fuente",
     "license": "Licencia AGPL-3.0",
-    "madeBy": "Hecho por {name}"
+    "madeBy": "Hecho por {name}",
+    "facts": "Sin cookies · Sin cuentas · Código abierto",
+    "source": "Ver Código Fuente"
   },
   "common": {
     "cancel": "Cancelar",
@@ -123,5 +122,8 @@
       "scope": "Ámbito",
       "description": "Descripción"
     }
+  },
+  "shared": {
+    "select_option": "Selecciona una opción"
   }
 }

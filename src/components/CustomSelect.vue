@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = withDefaults(
   defineProps<{
@@ -24,6 +25,8 @@ const emit = defineEmits<{
   (emitEvent: 'update:modelValue', value: string): void;
 }>();
 
+const { t } = useI18n();
+
 const isOpen = ref(false);
 const containerRef = ref<HTMLElement | null>(null);
 const triggerRef = ref<HTMLButtonElement | null>(null);
@@ -31,7 +34,7 @@ const optionRefs = ref<HTMLButtonElement[]>([]);
 
 const currentLabel = computed(() => {
   const matchingOption = props.options.find((optionItem) => optionItem.value === props.modelValue);
-  return matchingOption ? matchingOption.label : props.placeholder || 'Select an option';
+  return matchingOption ? matchingOption.label : props.placeholder || t('shared.select_option');
 });
 
 const setOptionRef = (element: unknown, index: number) => {
@@ -169,10 +172,10 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .custom-select-container {
   position: relative;
-  display: block; /* Make it full width block like standard inputs */
+  display: block;
   width: 100%;
 }
 
@@ -181,10 +184,10 @@ onUnmounted(() => {
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  padding: vars.$control-padding-y vars.$control-padding-x;
+  padding: 0.85rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  font-size: vars.$control-font-size;
+  font-size: 0.95rem;
   font-family: inherit;
   font-weight: 600;
   display: flex;
@@ -193,18 +196,18 @@ onUnmounted(() => {
   transition: all 0.2s ease-in-out;
   text-align: left;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
-  &--sm {
-    padding: vars.$control-padding-y-sm vars.$control-padding-x-sm;
-    font-size: vars.$control-font-size-sm;
-  }
+.custom-select-trigger--sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
 }
 
 .custom-select-trigger:focus,
 .custom-select-trigger:focus-visible {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px var(--accent-color-alpha);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .custom-select-trigger:hover {
@@ -214,10 +217,10 @@ onUnmounted(() => {
 .custom-select-trigger:disabled {
   cursor: not-allowed;
   opacity: 0.65;
+}
 
-  &:hover {
-    border-color: var(--border-color);
-  }
+.custom-select-trigger:disabled:hover {
+  border-color: var(--border-color);
 }
 
 .placeholder {
@@ -247,7 +250,7 @@ onUnmounted(() => {
   top: calc(100% + 0.35rem);
   left: 0;
   width: 100%;
-  background-color: var(--bg-surface);
+  background-color: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow:
@@ -279,7 +282,7 @@ onUnmounted(() => {
 
 .select-option:hover,
 .select-option:focus-visible {
-  background-color: var(--bg-surface-hover);
+  background-color: var(--bg-surface-hover, rgba(0, 0, 0, 0.05));
   outline: none;
 }
 

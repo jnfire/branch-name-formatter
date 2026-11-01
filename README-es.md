@@ -6,6 +6,10 @@ Una herramienta web rápida y local-first diseñada para que los desarrolladores
 
 Todo el procesamiento se realiza localmente en tu navegador web, garantizando un **control total** de tus datos (Local-First). Construido con **Vue 3 (Composition API)** y **TypeScript**.
 
+**▶ [Pruébalo: branches.jnfire.dev/](https://branches.jnfire.dev/)**
+
+![Branch Name Formatter en escritorio y móvil](docs/screenshots/branch-name-formatter-hero.png)
+
 ## Características Clave
 - **Formatos de Rama Dinámicos:** Incluye tres formatos listos para usar (formato por defecto, GitFlow, Conventional Commits) y permite crear, clonar, editar o borrar los tuyos propios desde la pantalla de Configuración, con previsualización en vivo mientras escribes.
 - **Nombres Siempre Válidos:** El saneado (quitar tildes, espacios, puntos, caracteres especiales, colapsar guiones...) se aplica siempre, así que cada nombre generado es un nombre de rama válido en git. Solo eliges la capitalización por campo (mayúsculas, minúsculas o tal cual).
@@ -33,6 +37,17 @@ Los cambios notables de cada versión se documentan en [`CHANGELOG.md`](CHANGELO
 npm install
 npm run dev
 ```
+
+## 📚 Documentación
+
+- [Arquitectura](docs/ARCHITECTURE_ES.md)
+- [Sistema de diseño](docs/DESIGN-SYSTEM-es.md), compartido con las otras herramientas del portafolio
+- [Roadmap](docs/ROADMAP-es.md)
+- [Evolución](docs/evolution/README-es.md): cómo ha cambiado el proyecto, con capturas
+
+## 🤝 Desarrollo
+
+Diseñado y dirigido por [Javier Nicolás Pérez Mesa](https://github.com/jnfire): el producto, la arquitectura y las decisiones de diseño son del autor. La IA ha formado parte del trabajo como un experimento deliberado para aprender tecnología nueva: Gemini CLI, Antigravity, GitHub Copilot y Claude Code, probados uno tras otro. Empezó con pequeñas intervenciones y, a medida que avanzaba el experimento, fue ganando autonomía, siempre mediante pull requests que revisa el autor. Los commits hechos con Claude Code llevan un `Co-Authored-By`.
 
 ## Licencia
 Copyright (C) 2026 Javier Nicolás Pérez Mesa.
