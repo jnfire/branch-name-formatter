@@ -20,3 +20,5 @@ Versions follow [Semantic Versioning](https://semver.org/): a patch for fixes, a
 If the workflow fails because the changelog has no section for the version, fix `CHANGELOG.md`, delete the tag (`git push origin --delete vx.y.z`) and tag again.
 
 Tags and releases are never deleted or renumbered, even when the design or the numbering strategy changes: the history is part of the project. A new version always continues from the latest tag.
+
+You can also create the tag and the release by hand from the GitHub web page (Releases → Draft a new release). The workflow detects that the release already exists and leaves it as it is, so it does not fail.
