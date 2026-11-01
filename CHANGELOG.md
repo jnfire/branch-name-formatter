@@ -7,7 +7,7 @@ and this project uses [Semantic Versioning](https://semver.org/). The version
 number lives in a single place, `package.json`, and is shown live in the app
 footer.
 
-## [1.0.0] - 2026-10-31
+## [1.0.0] - 2026-11-01
 
 First stable release. It brings the tool up to the standard of the other
 portfolio tools and includes the redesign and the new branch-format system of
