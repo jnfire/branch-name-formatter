@@ -1,161 +1,164 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
+import AppIcon from '@/components/AppIcon.vue';
 import BranchForm from '@/components/BranchForm.vue';
 import BranchList from '@/components/BranchList.vue';
-import { BranchManager } from '@/core/BranchManager';
+import BranchOutput from '@/components/BranchOutput.vue';
 import { BranchFormatter } from '@/core/BranchFormatter';
-import type { BranchFormType } from '@/core/BranchTypes';
+import { BranchManager } from '@/core/BranchManager';
+import { FormatManager } from '@/core/FormatManager';
 import type { Branch } from '@/core/Branch';
+import type { BranchFormType } from '@/core/BranchTypes';
 import type { BranchFormatTemplate } from '@/core/FormatTypes';
+import { useRoute } from '@/composables/useRoute';
+import { copyText } from '@/utils/clipboard';
+import { useI18n } from 'vue-i18n';
 
+const MAX_HISTORY = 10;
+const COPIED_FEEDBACK_MS = 2000;
+
+const { t } = useI18n();
+const { goFormats } = useRoute();
 const branchManager = BranchManager.getInstance();
 
+const formats = ref<BranchFormatTemplate[]>(FormatManager.getFormats());
+const formatId = ref<string>('');
+const values = ref<BranchFormType>({});
 const branches = ref<Branch[]>(branchManager.getBranches());
-const showHistory = ref(false);
-const latestBranch = ref<Branch | null>(null);
+const historyOpen = ref(false);
 const copied = ref(false);
+const justAddedId = ref<number | null>(null);
+let copiedTimer: ReturnType<typeof setTimeout> | undefined;
 
-const copyToClipboard = async (text: string) => {
-  await navigator.clipboard.writeText(text);
-  copied.value = true;
-  setTimeout(() => {
-    copied.value = false;
-  }, 2000);
+// The format chosen last time, if it still exists; otherwise the first one.
+const storedId = FormatManager.getDefaultFormatId();
+formatId.value = formats.value.some((f) => f.id === storedId) ? storedId! : formats.value[0].id;
+
+const format = computed(
+  () => formats.value.find((f) => f.id === formatId.value) ?? formats.value[0],
+);
+
+const resolveLabel = (value: string) => (value.includes('.') ? t(value) : value);
+
+// Selects start with their first option; everything else starts empty.
+const initialValues = (template: BranchFormatTemplate): BranchFormType => {
+  const initial: BranchFormType = {};
+  for (const field of template.fields) {
+    if (field.type === 'select' && field.options?.length) initial[field.id] = field.options[0];
+  }
+  return initial;
 };
 
-const updateBranches = () => {
+watch(
+  format,
+  (template) => {
+    values.value = initialValues(template);
+    copied.value = false;
+  },
+  { immediate: true },
+);
+
+const complete = computed(() =>
+  format.value.fields.every((field) => (values.value[field.id] ?? '').trim() !== ''),
+);
+const name = computed(() => BranchFormatter.format(format.value, values.value));
+const canCopy = computed(() => complete.value && name.value !== '');
+const segments = computed(() =>
+  BranchFormatter.formatSegments(format.value, values.value, complete.value),
+);
+const placeholders = computed(() => format.value.fields.map((field) => resolveLabel(field.label)));
+
+const chooseFormat = (id: string) => {
+  formatId.value = id;
+  FormatManager.setDefaultFormatId(id);
+};
+
+const saveToHistory = () => {
+  const latest = branches.value[0];
+  if (latest?.branchName !== name.value) {
+    branchManager.createBranch({ branchName: name.value, formatId: format.value.id });
+    branches.value = [...branchManager.getBranches()];
+  }
+  justAddedId.value = branches.value[0]?.id ?? null;
+};
+
+const copyName = async () => {
+  if (!canCopy.value) return;
+  const done = await copyText(name.value);
+  if (!done) return;
+  saveToHistory();
+  copied.value = true;
+  clearTimeout(copiedTimer);
+  copiedTimer = setTimeout(() => {
+    copied.value = false;
+    justAddedId.value = null;
+  }, COPIED_FEEDBACK_MS);
+};
+
+const deleteBranch = (branchId: number) => {
+  branchManager.deleteBranch(branchId);
   branches.value = [...branchManager.getBranches()];
 };
 
-// Now handleFormSubmit receives both the template and the form data
-const handleFormSubmit = (template: BranchFormatTemplate, formData: BranchFormType) => {
-  const branchName = BranchFormatter.format(template, formData);
-  branchManager.createBranch({
-    branchName,
-    formatId: template.id,
-  });
-  updateBranches();
-  latestBranch.value = branches.value[0] || null;
-};
-
-const handleDeleteBranch = (branchId: number) => {
-  branchManager.deleteBranch(branchId);
-  updateBranches();
-};
+onBeforeUnmount(() => clearTimeout(copiedTimer));
 </script>
 
 <template>
-  <main class="main-content container">
-    <div class="converter-box">
-      <BranchForm @submitForm="handleFormSubmit" />
-    </div>
+  <div class="workbench">
+    <BranchForm
+      v-model="values"
+      :formats="formats"
+      :format-id="formatId"
+      @update:format-id="chooseFormat"
+      @submit="copyName"
+      @manage="goFormats(null)"
+    />
 
-    <div v-if="latestBranch" class="result-section" role="region" :aria-label="$t('result.title')">
-      <div class="sr-only" role="status" aria-live="polite">
-        {{ $t('result.title') }}: {{ latestBranch.branchName }}
-      </div>
-      <h2 class="result-title">{{ $t('result.title') }}</h2>
-      <div class="result-card">
-        <code class="result-code">{{ latestBranch.branchName }}</code>
+    <BranchOutput
+      :segments="segments"
+      :placeholders="placeholders"
+      :can-copy="canCopy"
+      :copied="copied"
+      :name="name"
+      @copy="copyName"
+    />
+
+    <section
+      class="wb-history"
+      :class="{ 'is-closed': !historyOpen }"
+      :aria-label="$t('history.title')"
+    >
+      <div class="settings-card">
         <button
           type="button"
-          class="btn-primary"
-          :aria-label="`${$t('result.copy')}: ${latestBranch.branchName}`"
-          @click="copyToClipboard(latestBranch.branchName)"
+          class="hist-toggle"
+          :aria-expanded="historyOpen"
+          aria-controls="history-list-pane"
+          @click="historyOpen = !historyOpen"
         >
-          {{ copied ? $t('result.copied') : $t('result.copy') }}
+          <span class="card-title">
+            {{ $t('history.title') }}
+            <span class="badge-count">{{ branches.length }}</span>
+          </span>
+          <AppIcon name="chevron" class="hist-chevron" />
         </button>
-        <div v-if="copied" class="sr-only" role="status" aria-live="polite">
-          {{ $t('result.copied') }}
+        <div class="card-head">
+          <span class="card-title">{{ $t('history.title') }}</span>
+          <span class="badge-count">{{
+            $t('history.count', { count: branches.length, max: MAX_HISTORY })
+          }}</span>
+        </div>
+
+        <div id="history-list-pane">
+          <BranchList
+            v-if="branches.length"
+            :branches="branches"
+            :highlight-id="copied ? justAddedId : null"
+            @deleteBranch="deleteBranch"
+          />
+          <p v-else class="hist-empty">{{ $t('history.empty') }}</p>
         </div>
       </div>
-    </div>
-
-    <div class="history-section">
-      <div class="history-header">
-        <button
-          type="button"
-          class="btn-secondary toggle-btn"
-          :aria-expanded="showHistory"
-          aria-controls="history-list-pane"
-          @click="showHistory = !showHistory"
-        >
-          {{ showHistory ? $t('history.hide') : $t('history.show') }}
-        </button>
-      </div>
-
-      <div v-if="showHistory" id="history-list-pane" class="history-pane">
-        <BranchList :branches="branches" @deleteBranch="handleDeleteBranch" />
-      </div>
-    </div>
-  </main>
+    </section>
+  </div>
 </template>
-
-<style scoped lang="scss">
-.converter-box {
-  background-color: var(--bg-surface);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: vars.$bp-mobile) {
-  .converter-box {
-    padding: 1.5rem;
-  }
-  .result-code {
-    font-size: 1.25rem;
-  }
-}
-
-.result-section {
-  animation: fadeIn 0.3s ease-out;
-  margin-bottom: 3rem;
-}
-
-.result-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-.result-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.result-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-main);
-  word-break: break-all;
-  text-align: center;
-}
-
-.history-section {
-  margin-top: 4rem;
-}
-
-.history-header {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.history-pane {
-  animation: fadeIn 0.3s ease-out;
-}
-</style>

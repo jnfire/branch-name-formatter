@@ -153,3 +153,62 @@ describe('BranchFormatter', () => {
     expect(result).toBe('PROJ-1--aaaaeeiooouc');
   });
 });
+
+describe('BranchFormatter.formatSegments', () => {
+  const template: BranchFormatTemplate = {
+    id: 'seg',
+    name: 'Seg',
+    templateString: '{projectId}-{ticketId}--{featureName}',
+    isReadonly: true,
+    language: 'es',
+    fields: [
+      { id: 'projectId', label: 'ID', capitalization: 'UPPERCASE' },
+      { id: 'ticketId', label: 'TICKET', capitalization: 'UPPERCASE' },
+      { id: 'featureName', label: 'FEATURE', capitalization: 'LOWERCASE' },
+    ],
+  };
+
+  it('splits the name into field values and literal text', () => {
+    const segments = BranchFormatter.formatSegments(template, {
+      projectId: 'web',
+      ticketId: '487',
+      featureName: 'Login con SSO',
+    });
+    expect(segments).toEqual([
+      { kind: 'field', fieldId: 'projectId', index: 0, text: 'WEB' },
+      { kind: 'text', text: '-' },
+      { kind: 'field', fieldId: 'ticketId', index: 1, text: '487' },
+      { kind: 'text', text: '--' },
+      { kind: 'field', fieldId: 'featureName', index: 2, text: 'login-con-sso' },
+    ]);
+  });
+
+  it.each([
+    { projectId: 'web', ticketId: '487', featureName: 'Añadir/Login Ñoño' },
+    { projectId: '-web', ticketId: '487', featureName: '-x-' },
+    { projectId: 'web', ticketId: '', featureName: '' },
+    { projectId: '', ticketId: '', featureName: '' },
+  ])('joined texts equal format() for %o', (values) => {
+    const joined = BranchFormatter.formatSegments(template, values)
+      .map((segment) => segment.text)
+      .join('');
+    expect(joined).toBe(BranchFormatter.format(template, values));
+  });
+
+  it('keeps the separators of empty fields when not trimming', () => {
+    const segments = BranchFormatter.formatSegments(
+      template,
+      { projectId: 'web', ticketId: '487', featureName: '' },
+      false,
+    );
+    expect(segments.map((segment) => segment.text).join('')).toBe('WEB-487--');
+  });
+
+  it('prints a token that matches no field as literal text', () => {
+    const segments = BranchFormatter.formatSegments(
+      { ...template, templateString: '{projectId}-{nope}' },
+      { projectId: 'web' },
+    );
+    expect(segments.map((segment) => segment.text).join('')).toBe('WEB-{nope}');
+  });
+});

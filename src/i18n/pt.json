@@ -7,20 +7,16 @@
   },
   "form": {
     "formatLabel": "Formato",
-    "generate": "Gerar Nome de Branch",
-    "errorRequired": "Por favor, preencha todos os campos obrigatórios."
-  },
-  "result": {
-    "title": "Nome de Branch Gerado",
-    "copy": "Copiar Nome",
-    "copied": "Copiado!"
+    "manage": "Gerir formatos"
   },
   "history": {
-    "show": "Mostrar Histórico",
-    "hide": "Ocultar Histórico",
     "title": "Histórico",
     "copy": "Copiar",
-    "delete": "Eliminar"
+    "delete": "Eliminar",
+    "count": "{count} de {max}",
+    "empty": "Ainda não copiou nenhum nome.",
+    "copyItem": "Copiar {name}",
+    "deleteItem": "Apagar {name}"
   },
   "footer": {
     "license": "Licença AGPL-3.0",
@@ -37,18 +33,13 @@
     "placeholder": "Selecione um formato"
   },
   "configurator": {
-    "availableFormats": "Formatos Disponíveis",
-    "createFormat": "Criar Formato",
-    "badgeBuiltin": "Predefinido",
-    "badgeSelected": "Selecionado",
-    "badgeHidden": "Oculto",
+    "badgeBuiltin": "Incluído",
+    "badgeSelected": "Em uso",
     "edit": "Editar",
     "clone": "Clonar",
     "delete": "Eliminar",
     "exportCustom": "Exportar",
     "importJson": "Importar",
-    "back": "Voltar",
-    "exportEmpty": "Não há formatos personalizados para exportar.",
     "importSuccess": "Formatos importados com sucesso.",
     "importError": "Erro ao importar formatos. Ficheiro inválido.",
     "newFormatName": "Novo Formato",
@@ -58,13 +49,8 @@
       "message": "Tem a certeza de que deseja eliminar este formato personalizado? Esta ação não pode ser desfeita."
     },
     "editor": {
-      "on": "Ativado",
-      "off": "Desativado",
-      "visibleHintOn": "Este formato aparece como opção no formulário principal.",
-      "visibleHintOff": "Este formato está oculto: não aparecerá como opção no formulário principal.",
-      "readonlyHint": "Este formato vem incluído na aplicação: só podes alterar se está visível e o seu idioma. Para editar os campos ou o modelo, clona-o a partir da lista e edita a cópia.",
       "formatName": "Nome do formato",
-      "template": "Modelo (usa {id} para inserir campos)",
+      "template": "Modelo",
       "language": "Idioma de formatação",
       "languageHelp_es": "Adapta as regras de limpeza e formatação de caracteres especiais (por exemplo, conversão de 'ñ' para 'ny', remoção de acentos e substituição de barras / pela palavra 'o') de acordo com as regras do espanhol.",
       "languageHelp_en": "Adapta as regras de limpeza e formatação de caracteres (por exemplo, remoção de acentos, símbolos especiais e substituição de barras / pela palavra 'or') de acordo com os padrões do inglês.",
@@ -75,23 +61,22 @@
       "fields": "Campos",
       "field": "Campo {n}",
       "deleteField": "Eliminar campo",
-      "fieldId": "ID do Campo",
+      "fieldId": "ID do campo",
       "fieldIdPlaceholder": "ex. ticketId",
-      "fieldLabel": "Nome do Campo",
+      "fieldLabel": "Nome do campo",
       "fieldLabelPlaceholder": "ex. ID do Ticket",
       "type": "Tipo",
-      "typeText": "Texto Livre",
+      "typeText": "Texto livre",
       "typeSelect": "Seletor",
-      "capitalization": "Capitalização",
+      "capitalization": "Maiúsculas e minúsculas",
       "capUpper": "Maiúsculas",
       "capLower": "Minúsculas",
       "capAsIs": "Tal como está",
       "options": "Opções (separadas por vírgulas)",
       "optionsPlaceholder": "ex. feature, fix, hotfix",
-      "addField": "+ Adicionar Campo",
+      "addField": "Adicionar campo",
       "cancel": "Cancelar",
-      "save": "Guardar",
-      "close": "Fechar"
+      "save": "Guardar"
     },
     "cloneSuffix": "(Cópia)"
   },
@@ -113,6 +98,25 @@
       "type": "Tipo (feat, fix...)",
       "scope": "Âmbito",
       "description": "Descrição"
+    },
+    "title": "Formatos",
+    "listTitle": "Os seus formatos",
+    "create": "Criar formato",
+    "useThis": "Usar este formato",
+    "cloneToEdit": "Clonar para editar",
+    "badgeCustom": "Próprio",
+    "builtinNote": "Este formato vem incluído e não pode ser alterado. Pode mudar o seu idioma de formatação ou cloná-lo para editar o modelo e os campos.",
+    "tryExample": "Experimentar com um exemplo",
+    "templateHelp": "Escreva cada campo entre chavetas com o seu ID. Cada campo deve aparecer uma vez.",
+    "fieldMeta": "{type} · {cap}",
+    "warnUnknown": "O modelo usa {tokens}, que não correspondem a nenhum campo.",
+    "warnUnused": "O modelo não usa {fields}.",
+    "warnDuplicate": "Dois campos partilham o ID {ids}.",
+    "discard": {
+      "title": "Descartar as alterações?",
+      "message": "Este formato tem alterações por guardar. Se sair agora, serão perdidas.",
+      "confirm": "Descartar",
+      "cancel": "Continuar a editar"
     }
   },
   "settings": {
@@ -121,9 +125,25 @@
     "themeLight": "Claro",
     "themeDark": "Escuro",
     "themeSystem": "Sistema",
-    "personalization": "Personalização"
+    "personalization": "Personalização",
+    "title": "Definições",
+    "backup": {
+      "title": "Cópia de segurança",
+      "help": "Os seus formatos próprios ficam guardados neste navegador. Exporte um ficheiro para os levar para outro computador ou guardar uma cópia, e importe um para os recuperar."
+    }
   },
   "shared": {
     "select_option": "Selecione uma opção"
+  },
+  "nav": {
+    "backToGenerator": "Voltar ao gerador",
+    "backToFormats": "Formatos"
+  },
+  "output": {
+    "title": "Nome do branch",
+    "copy": "Copiar nome",
+    "copied": "Copiado",
+    "hintReady": "Ao copiar, também é guardado no histórico.",
+    "hintIncomplete": "Preencha todos os campos para copiar."
   }
 }

@@ -6,8 +6,8 @@ Lo que hace Branch Name Formatter hoy y hacia dónde podría ir. Las ideas está
 
 ## Lo que hace hoy
 
-- Generar nombres de rama de Git válidos y coherentes con tres formatos incluidos (el de la app, GitFlow y Conventional Commits).
-- Crear, clonar, editar y borrar tus propios formatos, con vista previa en vivo; importarlos y exportarlos.
+- Generar nombres de rama de Git válidos y coherentes con tres formatos incluidos (el de la app, GitFlow y Conventional Commits). El nombre se actualiza mientras escribes, con cada campo de su color, y al copiarlo se guarda también en el historial.
+- Crear, clonar, editar y borrar tus propios formatos en su propia sección, con vista previa en vivo, un ejemplo para probar y un aviso de errores en la plantilla; importarlos y exportarlos desde los ajustes.
 - Saneado que siempre da nombres válidos, con un perfil de idioma por formato (seis idiomas).
 - Historial de los últimos diez nombres, guardado en el dispositivo.
 

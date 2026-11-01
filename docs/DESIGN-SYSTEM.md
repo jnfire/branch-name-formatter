@@ -22,7 +22,7 @@ The list lives in `shared-components.json`, together with the SHA-256 of each fi
 
 - **`src/app.config.ts`** holds what differs between the apps: the repository and the author. The shared components read it instead of hard-coding names.
 - **Translations.** Each app has its own dictionaries, but the shared components need a common set of keys (`header.*`, `footer.*`, `settings.*` and `shared.select_option`). A test in each repo checks that all six languages define them.
-- **Global styles.** The design tokens and the form and settings classes live in each app's global CSS and must keep the same names and values.
+- **Global styles.** The design tokens and the form and settings classes live in each app's global CSS and must keep the same names. The values are the same in every app, except the accent color.
 
 ## Design tokens
 
@@ -34,8 +34,10 @@ The list lives in `shared-components.json`, together with the SHA-256 of each fi
 | `--text-main` | `#111827` | `#f9fafb` |
 | `--text-muted` | `#6b7280` | `#9ca3af` |
 | `--border-color` | `#e5e7eb` | `#374151` |
-| `--accent-color` | `#000000` | `#ffffff` |
+| `--accent-color` | `#000000` (each app may choose its own) | `#ffffff` (each app may choose its own) |
 | `--error-color` | `#ef4444` | `#f87171` |
+
+The accent color is the one thing an app can change to have its own identity without touching the shared components: they only read `--accent-color` and `--bg-body`, so any color with enough contrast against both works. Branch Name Formatter uses indigo (`#4f46e5` in light, `#a5b4fc` in dark). The tokens `--seg-1` to `--seg-6`, the colors of the fields in a branch name, are specific to Branch.
 
 Cards use `--bg-surface` over `--bg-body`, controls use `--bg-body`, and radii are 8 px for controls and 12 px for cards.
 

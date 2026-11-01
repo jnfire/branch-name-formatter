@@ -11,10 +11,12 @@ Todo el procesamiento se realiza localmente en tu navegador web, garantizando un
 ![Branch Name Formatter en escritorio y móvil](docs/screenshots/branch-name-formatter-hero.png)
 
 ## Características Clave
-- **Formatos de Rama Dinámicos:** Incluye tres formatos listos para usar (formato por defecto, GitFlow, Conventional Commits) y permite crear, clonar, editar o borrar los tuyos propios desde la pantalla de Configuración, con previsualización en vivo mientras escribes.
+- **Nombre en vivo:** El nombre de la rama se actualiza mientras escribes, con cada campo de su color. Al copiarlo se guarda también en el historial, y el formato que elegiste es el que encuentras la próxima vez.
+- **Tus propios formatos:** Incluye tres formatos listos para usar (formato por defecto, GitFlow, Conventional Commits) y tiene su propia sección para crear, clonar, editar o borrar los tuyos, con previsualización en vivo, un ejemplo opcional para probar y un aviso si la plantilla tiene un error.
 - **Nombres Siempre Válidos:** El saneado (quitar tildes, espacios, puntos, caracteres especiales, colapsar guiones...) se aplica siempre, así que cada nombre generado es un nombre de rama válido en git. Solo eliges la capitalización por campo (mayúsculas, minúsculas o tal cual).
 - **Saneado Consciente del Idioma:** Cada formato tiene un idioma asociado (los 6 idiomas que soporta la app) que controla cómo se traducen la `/` y caracteres específicos de cada idioma (`ñ`, `ß`...) al nombre de la rama.
-- **Gestión de Historial:** Mantiene un registro de tus últimos 10 nombres generados para un acceso rápido (almacenado localmente).
+- **Historial:** Guarda tus últimos 10 nombres copiados para un acceso rápido (almacenado localmente).
+- **Copia de seguridad:** Exporta tus formatos a un archivo e impórtalos en otro equipo, desde los Ajustes.
 - **Procesamiento Local:** Todo sucede en el lado del cliente. Sin almacenamiento ni procesamiento en servidor de tus datos de ramas.
 - **Sin rastreo:** sin cookies, sin analítica y sin registro.
 - **Interfaz:** Diseño limpio, profesional y responsivo con soporte nativo para modo oscuro/claro.

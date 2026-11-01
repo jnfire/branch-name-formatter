@@ -7,20 +7,16 @@
   },
   "form": {
     "formatLabel": "Format",
-    "generate": "Générer le Nom de Branche",
-    "errorRequired": "Veuillez remplir tous les champs obligatoires."
-  },
-  "result": {
-    "title": "Nom de Branche Généré",
-    "copy": "Copier le Nom",
-    "copied": "Copié !"
+    "manage": "Gérer les formats"
   },
   "history": {
-    "show": "Afficher l'Historique",
-    "hide": "Masquer l'Historique",
     "title": "Historique",
     "copy": "Copier",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "count": "{count} sur {max}",
+    "empty": "Aucun nom copié pour l'instant.",
+    "copyItem": "Copier {name}",
+    "deleteItem": "Supprimer {name}"
   },
   "footer": {
     "license": "Licence AGPL-3.0",
@@ -37,18 +33,13 @@
     "placeholder": "Sélectionnez un format"
   },
   "configurator": {
-    "availableFormats": "Formats Disponibles",
-    "createFormat": "Créer un Format",
-    "badgeBuiltin": "Intégré",
-    "badgeSelected": "Sélectionné",
-    "badgeHidden": "Masqué",
+    "badgeBuiltin": "Inclus",
+    "badgeSelected": "Utilisé",
     "edit": "Modifier",
     "clone": "Cloner",
     "delete": "Supprimer",
     "exportCustom": "Exporter",
     "importJson": "Importer",
-    "back": "Retour",
-    "exportEmpty": "Aucun format personnalisé à exporter.",
     "importSuccess": "Formats importés avec succès.",
     "importError": "Erreur lors de l'importation. Fichier invalide.",
     "newFormatName": "Nouveau Format",
@@ -58,13 +49,8 @@
       "message": "Êtes-vous sûr de vouloir supprimer ce format personnalisé ? Cette action est irréversible."
     },
     "editor": {
-      "on": "Activé",
-      "off": "Désactivé",
-      "visibleHintOn": "Ce format apparaît comme option dans le formulaire principal.",
-      "visibleHintOff": "Ce format est masqué : il n'apparaîtra pas comme option dans le formulaire principal.",
-      "readonlyHint": "Ce format est fourni avec l'application : vous ne pouvez modifier que sa visibilité et sa langue. Pour modifier ses champs ou son modèle, clonez-le depuis la liste et modifiez la copie.",
       "formatName": "Nom du format",
-      "template": "Modèle (utilisez {id} pour insérer des champs)",
+      "template": "Modèle",
       "language": "Langue de formatage",
       "languageHelp_es": "Adapte les règles de nettoyage et de formatage des caractères spéciaux (par exemple, conversion de la 'ñ' en 'ny', suppression des accents et remplacement des barres / par le mot 'o') selon les règles de l'espagnol.",
       "languageHelp_en": "Adapte les règles de nettoyage et de formatage des caractères (par exemple, suppression des accents, des symboles spéciaux et remplacement des barres / par le mot 'or') selon les normes de l'anglais.",
@@ -75,12 +61,12 @@
       "fields": "Champs",
       "field": "Champ {n}",
       "deleteField": "Supprimer le champ",
-      "fieldId": "ID du Champ",
+      "fieldId": "ID du champ",
       "fieldIdPlaceholder": "ex. ticketId",
-      "fieldLabel": "Nom du Champ",
+      "fieldLabel": "Nom du champ",
       "fieldLabelPlaceholder": "ex. ID du Ticket",
       "type": "Type",
-      "typeText": "Texte Libre",
+      "typeText": "Texte libre",
       "typeSelect": "Sélecteur",
       "capitalization": "Casse",
       "capUpper": "Majuscules",
@@ -88,10 +74,9 @@
       "capAsIs": "Telle quelle",
       "options": "Options (séparées par des virgules)",
       "optionsPlaceholder": "ex. feature, fix, hotfix",
-      "addField": "+ Ajouter un Champ",
+      "addField": "Ajouter un champ",
       "cancel": "Annuler",
-      "save": "Enregistrer",
-      "close": "Fermer"
+      "save": "Enregistrer"
     },
     "cloneSuffix": "(Clone)"
   },
@@ -113,6 +98,25 @@
       "type": "Type (feat, fix...)",
       "scope": "Portée",
       "description": "Description"
+    },
+    "title": "Formats",
+    "listTitle": "Vos formats",
+    "create": "Créer un format",
+    "useThis": "Utiliser ce format",
+    "cloneToEdit": "Cloner pour modifier",
+    "badgeCustom": "Personnel",
+    "builtinNote": "Ce format est fourni avec l'application et ne peut pas être modifié. Vous pouvez changer sa langue de formatage ou le cloner pour modifier le modèle et les champs.",
+    "tryExample": "Essayer avec un exemple",
+    "templateHelp": "Écrivez chaque champ entre accolades avec son ID. Chaque champ doit apparaître une fois.",
+    "fieldMeta": "{type} · {cap}",
+    "warnUnknown": "Le modèle utilise {tokens}, qui ne correspondent à aucun champ.",
+    "warnUnused": "Le modèle n'utilise pas {fields}.",
+    "warnDuplicate": "Deux champs partagent l'ID {ids}.",
+    "discard": {
+      "title": "Abandonner les modifications ?",
+      "message": "Ce format a des modifications non enregistrées. Si vous quittez maintenant, elles seront perdues.",
+      "confirm": "Abandonner",
+      "cancel": "Continuer à modifier"
     }
   },
   "settings": {
@@ -121,9 +125,25 @@
     "themeLight": "Clair",
     "themeDark": "Sombre",
     "themeSystem": "Système",
-    "personalization": "Personnalisation"
+    "personalization": "Personnalisation",
+    "title": "Paramètres",
+    "backup": {
+      "title": "Sauvegarde",
+      "help": "Vos formats personnels sont enregistrés dans ce navigateur. Exportez un fichier pour les emporter sur un autre ordinateur ou en garder une copie, et importez-en un pour les retrouver."
+    }
   },
   "shared": {
     "select_option": "Sélectionnez une option"
+  },
+  "nav": {
+    "backToGenerator": "Retour au générateur",
+    "backToFormats": "Formats"
+  },
+  "output": {
+    "title": "Nom de branche",
+    "copy": "Copier le nom",
+    "copied": "Copié",
+    "hintReady": "La copie l'enregistre aussi dans l'historique.",
+    "hintIncomplete": "Remplissez tous les champs pour copier."
   }
 }

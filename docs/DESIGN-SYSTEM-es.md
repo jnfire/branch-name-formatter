@@ -22,7 +22,7 @@ La lista está en `shared-components.json`, junto con el SHA-256 de cada fichero
 
 - **`src/app.config.ts`** contiene lo que cambia entre las apps: el repositorio y el autor. Los componentes compartidos lo leen en lugar de llevar nombres escritos a mano.
 - **Las traducciones.** Cada app tiene sus diccionarios, pero los componentes compartidos necesitan un conjunto común de claves (`header.*`, `footer.*`, `settings.*` y `shared.select_option`). Un test de cada repo comprueba que los seis idiomas las definen.
-- **Los estilos globales.** Los tokens de diseño y las clases de formularios y configuración viven en el CSS global de cada app y deben mantener los mismos nombres y valores.
+- **Los estilos globales.** Los tokens de diseño y las clases de formularios y configuración viven en el CSS global de cada app y deben mantener los mismos nombres. Los valores son iguales en todas las apps, salvo el color de acento.
 
 ## Tokens de diseño
 
@@ -34,8 +34,10 @@ La lista está en `shared-components.json`, junto con el SHA-256 de cada fichero
 | `--text-main` | `#111827` | `#f9fafb` |
 | `--text-muted` | `#6b7280` | `#9ca3af` |
 | `--border-color` | `#e5e7eb` | `#374151` |
-| `--accent-color` | `#000000` | `#ffffff` |
+| `--accent-color` | `#000000` (cada app puede elegir el suyo) | `#ffffff` (cada app puede elegir el suyo) |
 | `--error-color` | `#ef4444` | `#f87171` |
+
+El color de acento es lo único que una app puede cambiar para tener identidad propia sin tocar los componentes compartidos: estos solo leen `--accent-color` y `--bg-body`, así que sirve cualquier color con contraste suficiente con ambos. Branch Name Formatter usa índigo (`#4f46e5` en claro y `#a5b4fc` en oscuro). Los tokens `--seg-1` a `--seg-6`, los colores de los campos de un nombre de rama, son propios de Branch.
 
 Las tarjetas usan `--bg-surface` sobre `--bg-body`, los controles usan `--bg-body`, y los radios son de 8 px en controles y de 12 px en tarjetas.
 

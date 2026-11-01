@@ -11,10 +11,12 @@ All processing is done locally in your web browser, ensuring **complete control*
 ![Branch Name Formatter on desktop and mobile](docs/screenshots/branch-name-formatter-hero.png)
 
 ## Key Features
-- **Dynamic Branch Formats:** Comes with three ready-to-use formats (default app format, GitFlow, Conventional Commits) and lets you create, clone, edit, or delete your own from the Settings screen, with a live preview as you type.
+- **Live name:** The branch name updates as you type, with each field in its own color. Copying it also saves it to the history, and the format you chose is the one you find next time.
+- **Your own formats:** Comes with three ready-to-use formats (default app format, GitFlow, Conventional Commits) and has its own section to create, clone, edit or delete yours, with a live preview, an optional example to try and a warning if the template has a typo.
 - **Guaranteed Valid Names:** Sanitization (removing accents, spaces, dots, special characters, collapsing dashes...) is always applied, so every generated name is a valid git branch name. You only choose the capitalization per field (uppercase, lowercase, or as-is).
 - **Language-Aware Sanitization:** Each format has a language profile (matching the app's 6 supported languages) that controls how `/` and language-specific characters (`ñ`, `ß`...) are translated into the branch name.
-- **History Management:** Keeps track of your last 10 generated names for quick access (stored locally).
+- **History:** Keeps your last 10 copied names for quick access (stored locally).
+- **Backup:** Export your formats to a file and import them on another computer, from the Settings.
 - **Local Processing:** Everything happens client-side. No server-side storage or processing of your branch data.
 - **No Tracking:** No cookies, no analytics and no sign-up.
 - **Interface:** Clean, professional, and responsive design with native dark/light mode support.
