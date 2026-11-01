@@ -20,3 +20,5 @@ Las versiones siguen el [versionado semántico](https://semver.org/lang/es/): un
 Si el workflow falla porque el changelog no tiene sección para la versión, corrige `CHANGELOG.md`, borra la etiqueta (`git push origin --delete vx.y.z`) y vuelve a etiquetar.
 
 Las etiquetas y releases no se borran ni se renumeran, aunque cambie el diseño o la estrategia de versiones: el historial es parte del proyecto. Una versión nueva siempre continúa desde la última etiqueta.
+
+También puedes crear el tag y la release a mano desde la web de GitHub (Releases → Draft a new release). El workflow detecta que la release ya existe y la deja como está, así que no falla.
