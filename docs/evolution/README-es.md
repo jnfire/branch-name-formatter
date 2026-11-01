@@ -4,11 +4,11 @@
 
 Cómo Branch Name Formatter pasó de su primer commit a hoy, con las capturas para verlo.
 
-![Branch Name Formatter en tres etapas, escritorio](branch-name-formatter-evolution-desktop.png)
+![Branch Name Formatter en cuatro etapas, escritorio](branch-name-formatter-evolution-desktop.png)
 
 ## La historia
 
-Branch Name Formatter es la aplicación cuyo diseño más ha cambiado, y su cambio más radical es el rediseño de agosto de 2026. El generador oscuro con una sola fila de campos pasó a ser una herramienta construida alrededor de formatos que defines tú: un editor con vista previa en vivo, mayúsculas por campo, perfiles de idioma y un historial. En octubre se alineó con las otras herramientas, lo que simplificó la página (sin bloque de presentación, los hechos en el pie) y le dio los componentes compartidos.
+Branch Name Formatter es la aplicación cuyo diseño más ha cambiado, y su cambio más radical es el rediseño de agosto de 2026. El generador oscuro con una sola fila de campos pasó a ser una herramienta construida alrededor de formatos que defines tú: un editor con vista previa en vivo, mayúsculas por campo, perfiles de idioma y un historial. En octubre se alineó con las otras herramientas, lo que simplificó la página (sin bloque de presentación, los hechos en el pie) y le dio los componentes compartidos. En noviembre la pantalla principal pasó a ser un banco de trabajo, con el nombre vivo mientras escribes y los formatos en su propia sección.
 
 Versiones: la v0.1.0 (octubre de 2025) y la v0.2.0 (mayo de 2026) se quedan como estaban. El rediseño de agosto de 2026 se documentó como 1.0.0 en el registro de cambios pero nunca se etiquetó; sale ahora junto con el trabajo de octubre.
 
@@ -21,12 +21,13 @@ Versiones: la v0.1.0 (octubre de 2025) y la v0.2.0 (mayo de 2026) se quedan como
 | Mayo de 2026 | v0.2.0: selector de idioma propio con banderas y mejor accesibilidad con teclado. |
 | Agosto de 2026 | Rediseño completo y un nuevo sistema de formatos: el editor de formatos propios con vista previa en vivo, mayúsculas por campo, perfiles de idioma y el historial. |
 | Octubre de 2026 | Software libre (AGPL-3.0), sin Google Analytics ni banner de cookies, un sistema de diseño compartido con las otras dos herramientas, CI que condiciona cada despliegue y la versión 1.0.0, el paso siguiente a la 0.1.0 y la 0.2.0. |
+| Noviembre de 2026 | La pantalla principal se convierte en un banco de trabajo: el nombre se actualiza mientras escribes, cada campo de su color, y copiar lo guarda en el historial en un solo paso. Los formatos tienen su propia sección, con una lista y un detalle, un ejemplo para probar y un aviso de errores en la plantilla. Los ajustes conservan el idioma, el tema y la copia de seguridad. Acento índigo. |
 
 ## En cifras
 
 | | Antes (agosto de 2026) | Ahora |
 | --- | --- | --- |
-| Tests automáticos | 63 | 80 |
+| Tests automáticos | 63 | 129 |
 | Licencia | Todos los derechos reservados | AGPL-3.0 |
 | Analítica | Google Analytics y banner de cookies | Ninguna |
 | Despliegue | Solo si pasan los tests | Solo si pasan lint, formato, componentes compartidos, tests y build |
@@ -36,11 +37,11 @@ La columna "antes" es el estado del proyecto el 28 de agosto de 2026, justo ante
 
 ## Imágenes
 
-Todas las imágenes están en esta carpeta y en [`../screenshots`](../screenshots); usan datos de ejemplo.
+Todas las imágenes están en esta carpeta y en [`../screenshots`](../screenshots); usan datos de ejemplo y no muestran las teselas del mapa porque se capturaron sin conexión.
 
-- [`branch-name-formatter-evolution-desktop.png`](branch-name-formatter-evolution-desktop.png): Tres etapas una junto a otra, en escritorio
-- [`branch-name-formatter-evolution-mobile.png`](branch-name-formatter-evolution-mobile.png): Las mismas tres etapas en el móvil
-- [`branch-name-formatter-formats.png`](../screenshots/branch-name-formatter-formats.png): El editor de formatos propios
+- [`branch-name-formatter-evolution-desktop.png`](branch-name-formatter-evolution-desktop.png): Cuatro etapas una junto a otra, en escritorio
+- [`branch-name-formatter-evolution-mobile.png`](branch-name-formatter-evolution-mobile.png): Las mismas cuatro etapas en el móvil
+- [`branch-name-formatter-formats.png`](../screenshots/branch-name-formatter-formats.png): La sección de formatos propios, con el editor y el ejemplo para probar
 
 ## Cómo se ha construido
 

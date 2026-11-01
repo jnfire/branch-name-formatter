@@ -6,8 +6,8 @@ What Branch Name Formatter does today and where it could go. The ideas are order
 
 ## What it does today
 
-- Generate valid, consistent Git branch names from three built-in formats (app default, GitFlow, Conventional Commits).
-- Create, clone, edit and delete your own formats, with a live preview; import and export them.
+- Generate valid, consistent Git branch names from three built-in formats (app default, GitFlow, Conventional Commits). The name updates while you type, with each field in its own color, and copying it also saves it to the history.
+- Create, clone, edit and delete your own formats in their own section, with a live preview, an example to try and a warning for template typos; import and export them from the settings.
 - Sanitization that always yields valid names, with a language profile per format (six languages).
 - A history of the last ten names, kept on the device.
 

@@ -7,6 +7,26 @@ and this project uses [Semantic Versioning](https://semver.org/). The version
 number lives in a single place, `package.json`, and is shown live in the app
 footer.
 
+## [Unreleased]
+
+### Added
+- The name updates while you type, with each field of the format in its own color. The generate button is gone: **Copy name** copies it and saves it to the history in one step, and pressing Enter does the same once every field is filled in.
+- The format selector is on the main screen. The format you choose is the default one the next time.
+- A section for formats (`#/formatos`) with the list on one side and the detail on the other, in two steps on narrow screens. Built-in formats open read-only with **Clone to edit**, and custom formats can also be cloned.
+- **Try it with an example** in the preview of a format, to see how the capitalization and the language profile change a real text.
+- A warning in the template of the editor for tokens that match no field and for fields that are not in the template.
+- Routes in the URL hash (`#/`, `#/formatos`, `#/ajustes`) so that the Back button works. Leaving the editor with changes that are not saved asks first.
+- The result of importing formats is shown in the Backup card of the settings instead of a browser dialog.
+
+### Changed
+- Indigo accent color, in light and dark themes. The shared components keep working as before and the other portfolio tools keep their own accent.
+- The settings screen now has only the language, the theme and the backup of the formats. Editing formats moved to its own section.
+- The history uses icon buttons, and the delete button is only red on hover, using the error color of the theme.
+- Texts of the editor are in sentence case in all six languages.
+
+### Removed
+- `AppConfigurationView.vue`, replaced by the formats and settings screens.
+
 ## [1.0.0] - 2026-11-01
 
 First stable release. It brings the tool up to the standard of the other
