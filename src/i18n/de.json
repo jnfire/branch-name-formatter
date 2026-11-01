@@ -7,20 +7,16 @@
   },
   "form": {
     "formatLabel": "Format",
-    "generate": "Branch-Namen Generieren",
-    "errorRequired": "Bitte füllen Sie alle erforderlichen Felder aus."
-  },
-  "result": {
-    "title": "Generierter Branch-Name",
-    "copy": "Name Kopieren",
-    "copied": "Kopiert!"
+    "manage": "Formate verwalten"
   },
   "history": {
-    "show": "Verlauf Anzeigen",
-    "hide": "Verlauf Ausblenden",
     "title": "Verlauf",
     "copy": "Kopieren",
-    "delete": "Löschen"
+    "delete": "Löschen",
+    "count": "{count} von {max}",
+    "empty": "Noch nichts kopiert.",
+    "copyItem": "{name} kopieren",
+    "deleteItem": "{name} löschen"
   },
   "footer": {
     "license": "Lizenz AGPL-3.0",
@@ -37,18 +33,13 @@
     "placeholder": "Wählen Sie ein Format"
   },
   "configurator": {
-    "availableFormats": "Verfügbare Formate",
-    "createFormat": "Format Erstellen",
-    "badgeBuiltin": "Integriert",
-    "badgeSelected": "Ausgewählt",
-    "badgeHidden": "Ausgeblendet",
+    "badgeBuiltin": "Enthalten",
+    "badgeSelected": "In Verwendung",
     "edit": "Bearbeiten",
     "clone": "Klonen",
     "delete": "Löschen",
     "exportCustom": "Exportieren",
     "importJson": "Importieren",
-    "back": "Zurück",
-    "exportEmpty": "Es gibt keine eigenen Formate zum Exportieren.",
     "importSuccess": "Formate erfolgreich importiert.",
     "importError": "Fehler beim Importieren. Ungültige Datei.",
     "newFormatName": "Neues Format",
@@ -58,13 +49,8 @@
       "message": "Möchten Sie dieses eigene Format wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "editor": {
-      "on": "Aktiviert",
-      "off": "Deaktiviert",
-      "visibleHintOn": "Dieses Format erscheint als Option im Hauptformular.",
-      "visibleHintOff": "Dieses Format ist ausgeblendet und erscheint nicht als Option im Hauptformular.",
-      "readonlyHint": "Dieses Format ist in der App enthalten: Sie können nur die Sichtbarkeit und die Sprache ändern. Um Felder oder Vorlage zu bearbeiten, klonen Sie es aus der Liste und bearbeiten Sie die Kopie.",
       "formatName": "Formatname",
-      "template": "Vorlage (verwenden Sie {id}, um Felder einzufügen)",
+      "template": "Vorlage",
       "language": "Formatierungssprache",
       "languageHelp_es": "Passt die Zeichenbereinigung und Formatierungsregeln für Sonderzeichen an (z. B. wird 'ñ' zu 'ny', Akzente werden entfernt und Schrägstriche / durch das Wort 'o' ersetzt) nach den Regeln für Spanisch.",
       "languageHelp_en": "Passt die Zeichenbereinigung und Formatierungsregeln für Sonderzeichen an (z. B. werden Akzente und Sonderzeichen entfernt und Schrägstriche / durch das Wort 'or' ersetzt) nach englischen Standards.",
@@ -88,10 +74,9 @@
       "capAsIs": "Unverändert",
       "options": "Optionen (durch Kommas getrennt)",
       "optionsPlaceholder": "z. B. feature, fix, hotfix",
-      "addField": "+ Feld Hinzufügen",
+      "addField": "Feld hinzufügen",
       "cancel": "Abbrechen",
-      "save": "Speichern",
-      "close": "Schließen"
+      "save": "Speichern"
     },
     "cloneSuffix": "(Kopie)"
   },
@@ -113,6 +98,25 @@
       "type": "Typ (feat, fix...)",
       "scope": "Geltungsbereich",
       "description": "Beschreibung"
+    },
+    "title": "Formate",
+    "listTitle": "Deine Formate",
+    "create": "Format erstellen",
+    "useThis": "Dieses Format verwenden",
+    "cloneToEdit": "Zum Bearbeiten klonen",
+    "badgeCustom": "Eigenes",
+    "builtinNote": "Dieses Format gehört zur App und kann nicht geändert werden. Du kannst seine Formatierungssprache ändern oder es klonen, um Vorlage und Felder zu bearbeiten.",
+    "tryExample": "Mit einem Beispiel testen",
+    "templateHelp": "Schreibe jedes Feld mit seiner ID in geschweifte Klammern. Jedes Feld muss einmal vorkommen.",
+    "fieldMeta": "{type} · {cap}",
+    "warnUnknown": "Die Vorlage verwendet {tokens}, was keinem Feld entspricht.",
+    "warnUnused": "Die Vorlage verwendet {fields} nicht.",
+    "warnDuplicate": "Zwei Felder teilen die ID {ids}.",
+    "discard": {
+      "title": "Änderungen verwerfen?",
+      "message": "Dieses Format hat nicht gespeicherte Änderungen. Wenn du jetzt gehst, gehen sie verloren.",
+      "confirm": "Verwerfen",
+      "cancel": "Weiter bearbeiten"
     }
   },
   "settings": {
@@ -121,9 +125,25 @@
     "themeLight": "Hell",
     "themeDark": "Dunkel",
     "themeSystem": "System",
-    "personalization": "Personalisierung"
+    "personalization": "Personalisierung",
+    "title": "Einstellungen",
+    "backup": {
+      "title": "Sicherung",
+      "help": "Deine eigenen Formate werden in diesem Browser gespeichert. Exportiere eine Datei, um sie auf einen anderen Rechner mitzunehmen oder zu sichern, und importiere eine, um sie zurückzubekommen."
+    }
   },
   "shared": {
     "select_option": "Option auswählen"
+  },
+  "nav": {
+    "backToGenerator": "Zurück zum Generator",
+    "backToFormats": "Formate"
+  },
+  "output": {
+    "title": "Branch-Name",
+    "copy": "Namen kopieren",
+    "copied": "Kopiert",
+    "hintReady": "Beim Kopieren wird er auch im Verlauf gespeichert.",
+    "hintIncomplete": "Fülle alle Felder aus, um zu kopieren."
   }
 }

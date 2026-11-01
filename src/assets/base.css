@@ -5,9 +5,16 @@
   --text-main: #111827;
   --text-muted: #6b7280;
   --border-color: #e5e7eb;
-  --accent-color: #000000;
-  --accent-color-alpha: rgba(0, 0, 0, 0.1);
+  --accent-color: #4f46e5;
+  --accent-color-alpha: rgba(79, 70, 229, 0.16);
   --error-color: #ef4444;
+  /* Colors of the fields in a branch name, in the order of the format. */
+  --seg-1: #4338ca;
+  --seg-2: #115e59;
+  --seg-3: #92400e;
+  --seg-4: #9f1239;
+  --seg-5: #075985;
+  --seg-6: #166534;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,9 +25,15 @@
     --text-main: #f9fafb;
     --text-muted: #9ca3af;
     --border-color: #374151;
-    --accent-color: #ffffff;
-    --accent-color-alpha: rgba(255, 255, 255, 0.1);
+    --accent-color: #a5b4fc;
+    --accent-color-alpha: rgba(165, 180, 252, 0.2);
     --error-color: #f87171;
+    --seg-1: #a5b4fc;
+    --seg-2: #5eead4;
+    --seg-3: #fcd34d;
+    --seg-4: #fda4af;
+    --seg-5: #7dd3fc;
+    --seg-6: #86efac;
   }
 }
 
@@ -31,9 +44,15 @@
   --text-main: #f9fafb;
   --text-muted: #9ca3af;
   --border-color: #374151;
-  --accent-color: #ffffff;
-  --accent-color-alpha: rgba(255, 255, 255, 0.1);
+  --accent-color: #a5b4fc;
+  --accent-color-alpha: rgba(165, 180, 252, 0.2);
   --error-color: #f87171;
+  --seg-1: #a5b4fc;
+  --seg-2: #5eead4;
+  --seg-3: #fcd34d;
+  --seg-4: #fda4af;
+  --seg-5: #7dd3fc;
+  --seg-6: #86efac;
 }
 
 * {

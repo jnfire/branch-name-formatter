@@ -116,4 +116,24 @@ describe('BranchItem.vue', () => {
 
     expect(wrapper.text()).toContain(branch.branchName);
   });
+
+  it('emits deleteBranch with its id from the delete button', async () => {
+    const wrapper = mount(BranchItem, {
+      props: { branchName: 'T1-Feature1', branchId: 7 },
+      global: { mocks: { $t: (msg: string) => msg } },
+    });
+
+    await wrapper.find('.icon-btn.danger').trigger('click');
+
+    expect(wrapper.emitted('deleteBranch')![0]).toEqual([7]);
+  });
+
+  it('marks the highlighted item', () => {
+    const wrapper = mount(BranchItem, {
+      props: { branchName: 'T1-Feature1', branchId: 1, highlight: true },
+      global: { mocks: { $t: (msg: string) => msg } },
+    });
+
+    expect(wrapper.classes()).toContain('is-new');
+  });
 });

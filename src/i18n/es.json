@@ -11,24 +11,25 @@
     "themeLight": "Claro",
     "themeDark": "Oscuro",
     "themeSystem": "Sistema",
-    "personalization": "Personalización"
+    "personalization": "Personalización",
+    "title": "Ajustes",
+    "backup": {
+      "title": "Copia de seguridad",
+      "help": "Tus formatos propios se guardan en este navegador. Exporta un archivo para llevarlos a otro equipo o conservarlos, e importa uno para recuperarlos."
+    }
   },
   "form": {
     "formatLabel": "Formato",
-    "generate": "Generar Nombre de Rama",
-    "errorRequired": "Por favor, completa todos los campos requeridos."
-  },
-  "result": {
-    "title": "Nombre de Rama Generado",
-    "copy": "Copiar Nombre",
-    "copied": "¡Copiado!"
+    "manage": "Gestionar formatos"
   },
   "history": {
-    "show": "Mostrar Historial",
-    "hide": "Ocultar Historial",
     "title": "Historial",
     "copy": "Copiar",
-    "delete": "Borrar"
+    "delete": "Borrar",
+    "count": "{count} de {max}",
+    "empty": "Aún no has copiado ningún nombre.",
+    "copyItem": "Copiar {name}",
+    "deleteItem": "Borrar {name}"
   },
   "footer": {
     "license": "Licencia AGPL-3.0",
@@ -45,18 +46,13 @@
     "placeholder": "Selecciona un formato"
   },
   "configurator": {
-    "availableFormats": "Formatos Disponibles",
-    "createFormat": "Crear Formato",
-    "badgeBuiltin": "Predeterminado",
-    "badgeSelected": "Seleccionado",
-    "badgeHidden": "Oculto",
+    "badgeBuiltin": "Incluido",
+    "badgeSelected": "En uso",
     "edit": "Editar",
     "clone": "Clonar",
     "delete": "Borrar",
     "exportCustom": "Exportar",
     "importJson": "Importar",
-    "back": "Volver",
-    "exportEmpty": "No hay formatos personalizados para exportar.",
     "importSuccess": "Formatos importados correctamente.",
     "importError": "Error al importar formatos. Archivo inválido.",
     "newFormatName": "Nuevo Formato",
@@ -66,13 +62,8 @@
       "message": "¿Estás seguro de que quieres eliminar este formato personalizado? Esta acción no se puede deshacer."
     },
     "editor": {
-      "on": "Activado",
-      "off": "Desactivado",
-      "visibleHintOn": "Este formato aparece como opción en el formulario principal.",
-      "visibleHintOff": "Este formato está oculto: no aparecerá como opción en el formulario principal.",
-      "readonlyHint": "Este formato viene incluido en la app: solo puedes cambiar si está visible y su idioma. Para editar sus campos o plantilla, clónalo desde la lista y edita la copia.",
       "formatName": "Nombre del formato",
-      "template": "Plantilla (Usa {id} para inyectar campos)",
+      "template": "Plantilla",
       "language": "Idioma de formateo",
       "languageHelp_es": "Adapta el saneado y formateado de caracteres especiales (por ejemplo, la ñ se convierte en ny, se eliminan tildes y las barras / se cambian por la palabra 'o') según las reglas de español.",
       "languageHelp_en": "Adapta las reglas de saneado y formateo de caracteres (por ejemplo, eliminando acentos, símbolos especiales y reemplazando las barras / por la palabra 'or') según los estándares de inglés.",
@@ -83,23 +74,22 @@
       "fields": "Campos",
       "field": "Campo {n}",
       "deleteField": "Eliminar campo",
-      "fieldId": "ID del Campo",
+      "fieldId": "ID del campo",
       "fieldIdPlaceholder": "ej: ticketId",
-      "fieldLabel": "Nombre del Campo",
+      "fieldLabel": "Nombre del campo",
       "fieldLabelPlaceholder": "ej: ID Ticket",
       "type": "Tipo",
-      "typeText": "Texto Libre",
+      "typeText": "Texto libre",
       "typeSelect": "Selector",
-      "capitalization": "Capitalización",
+      "capitalization": "Mayúsculas y minúsculas",
       "capUpper": "Mayúsculas",
       "capLower": "Minúsculas",
       "capAsIs": "Tal cual",
       "options": "Opciones (separadas por comas)",
       "optionsPlaceholder": "ej: feature, fix, hotfix",
-      "addField": "+ Añadir Campo",
+      "addField": "Añadir campo",
       "cancel": "Cancelar",
-      "save": "Guardar",
-      "close": "Cerrar"
+      "save": "Guardar"
     },
     "cloneSuffix": "(Clon)"
   },
@@ -121,9 +111,39 @@
       "type": "Tipo (feat, fix...)",
       "scope": "Ámbito",
       "description": "Descripción"
+    },
+    "title": "Formatos",
+    "listTitle": "Tus formatos",
+    "create": "Crear formato",
+    "useThis": "Usar este formato",
+    "cloneToEdit": "Clonar para editar",
+    "badgeCustom": "Propio",
+    "builtinNote": "Este formato viene incluido y no se puede modificar. Puedes cambiar su idioma de formateo o clonarlo para editar la plantilla y los campos.",
+    "tryExample": "Probar con un ejemplo",
+    "templateHelp": "Escribe cada campo entre llaves con su ID. Cada campo debe aparecer una vez.",
+    "fieldMeta": "{type} · {cap}",
+    "warnUnknown": "La plantilla usa {tokens}, que no coinciden con ningún campo.",
+    "warnUnused": "La plantilla no usa {fields}.",
+    "warnDuplicate": "Dos campos comparten el ID {ids}.",
+    "discard": {
+      "title": "¿Descartar los cambios?",
+      "message": "Este formato tiene cambios sin guardar. Si sales ahora, se perderán.",
+      "confirm": "Descartar",
+      "cancel": "Seguir editando"
     }
   },
   "shared": {
     "select_option": "Selecciona una opción"
+  },
+  "nav": {
+    "backToGenerator": "Volver al generador",
+    "backToFormats": "Formatos"
+  },
+  "output": {
+    "title": "Nombre de rama",
+    "copy": "Copiar nombre",
+    "copied": "Copiado",
+    "hintReady": "Al copiar se guarda en el historial.",
+    "hintIncomplete": "Rellena todos los campos para copiar."
   }
 }

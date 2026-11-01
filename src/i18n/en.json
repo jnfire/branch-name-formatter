@@ -11,24 +11,25 @@
     "themeLight": "Light",
     "themeDark": "Dark",
     "themeSystem": "System",
-    "personalization": "Personalization"
+    "personalization": "Personalization",
+    "title": "Settings",
+    "backup": {
+      "title": "Backup",
+      "help": "Your own formats are stored in this browser. Export a file to move them to another computer or keep a copy, and import one to get them back."
+    }
   },
   "form": {
     "formatLabel": "Format",
-    "generate": "Generate Branch Name",
-    "errorRequired": "Please fill in all required fields."
-  },
-  "result": {
-    "title": "Generated Branch Name",
-    "copy": "Copy Name",
-    "copied": "Copied!"
+    "manage": "Manage formats"
   },
   "history": {
-    "show": "Show History",
-    "hide": "Hide History",
     "title": "History",
     "copy": "Copy",
-    "delete": "Delete"
+    "delete": "Delete",
+    "count": "{count} of {max}",
+    "empty": "Nothing copied yet.",
+    "copyItem": "Copy {name}",
+    "deleteItem": "Delete {name}"
   },
   "footer": {
     "license": "AGPL-3.0 License",
@@ -45,18 +46,13 @@
     "placeholder": "Select a format"
   },
   "configurator": {
-    "availableFormats": "Available Formats",
-    "createFormat": "Create Format",
-    "badgeBuiltin": "Built-in",
-    "badgeSelected": "Selected",
-    "badgeHidden": "Hidden",
+    "badgeBuiltin": "Included",
+    "badgeSelected": "In use",
     "edit": "Edit",
     "clone": "Clone",
     "delete": "Delete",
     "exportCustom": "Export",
     "importJson": "Import",
-    "back": "Back",
-    "exportEmpty": "There are no custom formats to export.",
     "importSuccess": "Formats imported successfully.",
     "importError": "Error importing formats. Invalid file.",
     "newFormatName": "New Format",
@@ -66,13 +62,8 @@
       "message": "Are you sure you want to delete this custom format? This action cannot be undone."
     },
     "editor": {
-      "on": "On",
-      "off": "Off",
-      "visibleHintOn": "This format appears as an option in the main form.",
-      "visibleHintOff": "This format is hidden: it won't appear as an option in the main form.",
-      "readonlyHint": "This format ships with the app: you can only change whether it is visible and its language. To edit its fields or template, clone it from the list and edit the copy.",
       "formatName": "Format name",
-      "template": "Template (use {id} to inject fields)",
+      "template": "Template",
       "language": "Formatting Language",
       "languageHelp_es": "Adapts character sanitization and formatting rules (for example, converting 'ñ' to 'ny', removing accents, and replacing slashes / with the word 'o') according to Spanish rules.",
       "languageHelp_en": "Adapts character sanitization and formatting rules (for example, removing accents, special symbols, and replacing slashes / with the word 'or') according to English standards.",
@@ -85,10 +76,10 @@
       "deleteField": "Delete field",
       "fieldId": "Field ID",
       "fieldIdPlaceholder": "e.g. ticketId",
-      "fieldLabel": "Field Name",
+      "fieldLabel": "Field name",
       "fieldLabelPlaceholder": "e.g. Ticket ID",
       "type": "Type",
-      "typeText": "Free Text",
+      "typeText": "Free text",
       "typeSelect": "Select",
       "capitalization": "Capitalization",
       "capUpper": "Uppercase",
@@ -96,10 +87,9 @@
       "capAsIs": "As is",
       "options": "Options (comma-separated)",
       "optionsPlaceholder": "e.g. feature, fix, hotfix",
-      "addField": "+ Add Field",
+      "addField": "Add field",
       "cancel": "Cancel",
-      "save": "Save",
-      "close": "Close"
+      "save": "Save"
     },
     "cloneSuffix": "(Clone)"
   },
@@ -121,9 +111,39 @@
       "type": "Type (feat, fix...)",
       "scope": "Scope",
       "description": "Description"
+    },
+    "title": "Formats",
+    "listTitle": "Your formats",
+    "create": "Create format",
+    "useThis": "Use this format",
+    "cloneToEdit": "Clone to edit",
+    "badgeCustom": "Custom",
+    "builtinNote": "This format comes with the app and can't be changed. You can change its formatting language or clone it to edit the template and fields.",
+    "tryExample": "Try it with an example",
+    "templateHelp": "Write each field between braces with its ID. Each field must appear once.",
+    "fieldMeta": "{type} · {cap}",
+    "warnUnknown": "The template uses {tokens}, which match no field.",
+    "warnUnused": "The template does not use {fields}.",
+    "warnDuplicate": "Two fields share the ID {ids}.",
+    "discard": {
+      "title": "Discard changes?",
+      "message": "This format has changes that are not saved. If you leave now, they will be lost.",
+      "confirm": "Discard",
+      "cancel": "Keep editing"
     }
   },
   "shared": {
     "select_option": "Select an option"
+  },
+  "nav": {
+    "backToGenerator": "Back to the generator",
+    "backToFormats": "Formats"
+  },
+  "output": {
+    "title": "Branch name",
+    "copy": "Copy name",
+    "copied": "Copied",
+    "hintReady": "Copying also saves it to the history.",
+    "hintIncomplete": "Fill in every field to copy."
   }
 }

@@ -1,30 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import AppFooter from '@/components/AppFooter.vue';
 import AppHeader from '@/components/AppHeader.vue';
 
 import AppMainView from '@/components/AppMainView.vue';
-import AppConfigurationView from '@/components/AppConfigurationView.vue';
+import FormatsView from '@/components/FormatsView.vue';
+import SettingsView from '@/components/SettingsView.vue';
+import { useRoute } from '@/composables/useRoute';
 
-const showConfig = ref(false);
+const { route, goHome, goSettings } = useRoute();
 
-const toggleConfig = () => {
-  showConfig.value = !showConfig.value;
-};
+const onSettings = computed(() => route.value.name === 'settings');
 
-const goHome = () => {
-  showConfig.value = false;
-};
+// The gear opens the settings; pressing it again goes back to the generator.
+const toggleSettings = () => (onSettings.value ? goHome() : goSettings());
 </script>
 
 <template>
-  <AppHeader :showSettings="showConfig" @toggle-settings="toggleConfig" @home="goHome" />
+  <AppHeader :showSettings="onSettings" @toggle-settings="toggleSettings" @home="goHome" />
 
   <div class="app-layout">
-    <!-- Simulación de router con v-if -->
-    <AppConfigurationView v-if="showConfig" @close="toggleConfig" />
-    <AppMainView v-else />
+    <main class="main-content container-wide">
+      <FormatsView v-if="route.name === 'formats'" />
+      <SettingsView v-else-if="route.name === 'settings'" />
+      <AppMainView v-else />
+    </main>
 
     <AppFooter />
   </div>
