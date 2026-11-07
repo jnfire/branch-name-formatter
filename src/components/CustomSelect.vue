@@ -147,7 +147,7 @@ onUnmounted(() => {
       <span class="select-label" :class="{ placeholder: !modelValue && placeholder }">{{
         currentLabel
       }}</span>
-      <span class="dropdown-arrow" :class="{ 'arrow-open': isOpen }" aria-hidden="true">▾</span>
+      <span class="dropdown-arrow" :class="{ 'arrow-open': isOpen }" aria-hidden="true"></span>
     </button>
 
     <transition name="fade-slide">
@@ -235,14 +235,18 @@ onUnmounted(() => {
 }
 
 .dropdown-arrow {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-2px) rotate(45deg);
   transition: transform 0.2s ease;
-  margin-left: 0.5rem;
+  margin-left: 0.75rem;
 }
 
 .arrow-open {
-  transform: rotate(180deg);
+  transform: translateY(2px) rotate(225deg);
 }
 
 .custom-select-dropdown {

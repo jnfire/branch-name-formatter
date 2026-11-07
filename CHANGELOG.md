@@ -7,6 +7,11 @@ and this project uses [Semantic Versioning](https://semver.org/). The version
 number lives in a single place, `package.json`, and is shown live in the app
 footer.
 
+## [Unreleased]
+
+### Changed
+- The arrow of the selects is drawn with CSS instead of a text glyph, so it keeps the same size and weight in every browser and animates cleanly when the list opens.
+
 ## [1.1.0] - 2026-11-01
 
 ### Added
