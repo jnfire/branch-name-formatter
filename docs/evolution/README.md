@@ -42,7 +42,3 @@ All the images are in this folder and in [`../screenshots`](../screenshots); the
 - [`branch-name-formatter-evolution-desktop.png`](branch-name-formatter-evolution-desktop.png): Four stages side by side, desktop
 - [`branch-name-formatter-evolution-mobile.png`](branch-name-formatter-evolution-mobile.png): The same four stages on a phone
 - [`branch-name-formatter-formats.png`](../screenshots/branch-name-formatter-formats.png): The section for your own formats, with the editor and the example to try
-
-## How it was built
-
-Designed and directed by [Javier Nicolás Pérez Mesa](https://github.com/jnfire): the product, the architecture and the design decisions are the author's. AI has been part of the work as a deliberate experiment in learning new technology: Gemini CLI, Antigravity, GitHub Copilot and Claude Code, tried one after another. It began with small interventions and, as the experiment went on, moved towards more autonomy, always through pull requests that the author reviews. Commits made with Claude Code carry a `Co-Authored-By` trailer.

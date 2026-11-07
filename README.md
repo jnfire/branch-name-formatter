@@ -47,10 +47,6 @@ npm run dev
 - [Roadmap](docs/ROADMAP.md)
 - [Evolution](docs/evolution/README.md): how the project has changed, with screenshots
 
-## 🤝 Development
-
-Designed and directed by [Javier Nicolás Pérez Mesa](https://github.com/jnfire): the product, the architecture and the design decisions are the author's. AI has been part of the work as a deliberate experiment in learning new technology: Gemini CLI, Antigravity, GitHub Copilot and Claude Code, tried one after another. It began with small interventions and, as the experiment went on, moved towards more autonomy, always through pull requests that the author reviews. Commits made with Claude Code carry a `Co-Authored-By` trailer.
-
 ## License
 Copyright (C) 2026 Javier Nicolás Pérez Mesa.
 
